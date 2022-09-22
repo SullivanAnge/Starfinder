@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1>Formulaire compétence</h1>
+
+{# {{form(formCompetence)}} #}
+
+{{form_start(formCompetence)}}
+    {{form_row(formCompetence.titre)}}
+    {{form_row(formCompetence.caracteristique)}}
+    
+    <div class='form-group'>
+        {{form_widget(formCompetence.save)}}
+        <a href='{{path('app_competence')}}'>Annuler</a>
+    </div>
+{{form_end(formCompetence)}}
+
+
+{% endblock %}

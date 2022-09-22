@@ -1,0 +1,316 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+
+<form method='POST'>
+
+<div class='container-fluid'>
+<div class='row'>
+<div class='col-md-12'>
+<div class='bloc_form'>
+<h1 class='display-2'>Formulaire Personnage</h1>
+<div class=''><input type='submit' name='valid_perso' value='Valider' /></div>
+    <p>
+        <label>Nom : </label>
+        <input type='text' name='nom' value='{{personnage.nom}}'/>
+    </p>
+    <p>
+        <label>Race : </label>
+        <select class='form-select' name='race' id='select_race'>
+            {% for race in races %}
+                <option {{ (personnage.race == race) ? 'selected' : '' }} value='{{race.id}}'>{{race.titre}}</option>
+            {% endfor %}
+        </select>
+    
+    </p>
+    
+    
+    <p>
+        <label>Thème : </label>
+        <select class='form-select' name='theme' id='select_theme'>
+            {% for theme in themes %}
+                <option {{ (personnage.themes == theme) ? 'selected' : '' }} value='{{theme.id}}'>{{theme.titre}}</option>
+            {% endfor %}
+        </select>
+    
+    </p>
+    <p>
+        <label>Classe : </label>
+        <select class='form-select' name='classe' id='select_classe'>
+            {% for classe in classes %}
+                <option {{ (personnage.classe == classe) ? 'selected' : '' }} value='{{classe.id}}'>{{classe.titre}}</option>
+            {% endfor %}
+        </select>
+    
+    </p>
+    </div>
+    </div>
+    </div>
+    <div class='row'>
+    <div class='col-md-6'>
+    <div class='bloc_form'>
+        <h2 class='display-5'>Valeur de caractéristique </h2>
+        <table class='table'>
+            <tr>
+                <th></th>
+                <th>Valeur</th>
+                <th>Modificateur</th>
+                <th>Valeur améliorée</th>
+                <th>Modificateur amélioré</th>
+            </tr>
+            <tr>
+                <th>FOR</th>
+                <td><input type='number' name='caracFOR'  id='caracFOR' value='{{personnage.caracFOR}}' data-race='0' data-theme='0' class='carac' /></td>
+                <td><input type='number' name='modForce' id='modForce' value='{{personnage.modForce}}' readonly/></td>
+                <td><input type='number' name='' value=''/></td>
+                <td><input type='number' name='' value='' readonly/></td>
+            </tr>
+            <tr>
+                <th>DEX</th>
+                <td><input type='number' name='caracDEX' id='caracDEX' value='{{personnage.caracDEX}}' data-race='0' data-theme='0' class='carac' /></td>
+                <td><input type='number' name='modDex' id='modDex' value='{{personnage.modDex}}' readonly/></td>
+                <td><input type='number' name='' value=''/></td>
+                <td><input type='number' name='' value='' readonly /></td>
+            </tr>
+            <tr>
+                <th>CON</th>
+                <td><input type='number' name='caracCON' id='caracCON' value='{{personnage.caracCON}}' data-race='0' data-theme='0' class='carac' /></td>
+                <td><input type='number' name='modCon' id='modCon' value='{{personnage.modCon}}' readonly /></td>
+                <td><input type='number' name='' value=''/></td>
+                <td><input type='number' name='' value='' readonly /></td>
+            </tr>
+            <tr>
+                <th>INT</th>
+                <td><input type='number' name='caracINT' id='caracINT' value='{{personnage.caracINT}}' data-race='0' data-theme='0' class='carac' /></td>
+                <td><input type='number' name='modInt' id='modInt' value='{{personnage.modInt}}' readonly /></td>
+                <td><input type='number' name='' value=''/></td>
+                <td><input type='number' name='' value='' readonly /></td>
+            </tr>
+            <tr>
+                <th>SAG</th>
+                <td><input type='number' name='caracSAG' id='caracSAG' value='{{personnage.caracSAG}}' data-race='0' data-theme='0' class='carac' /></td>
+                <td><input type='number' name='modSag' id='modSag' value='{{personnage.modSag}}' readonly /></td>
+                <td><input type='number' name='' value=''/></td>
+                <td><input type='number' name='' value='' readonly /></td>
+            </tr>
+            <tr>
+                <th>CHA</th>
+                <td><input type='number' name='caracCHA' id='caracCHA' value='{{personnage.caracCHA}}' data-race='0' data-theme='0' class='carac' /></td>
+                <td><input type='number' name='modCha' id='modCha' value='{{personnage.modCha}}' readonly /></td>
+                <td><input type='number' name='' value=''/></td>
+                <td><input type='number' name='' value='' readonly /></td>
+            </tr>
+            
+        </table>
+    </div>
+    <div class='bloc_form'>
+        <h2 class='display-5'>Compétences </h2>
+        <table class='table'>
+            <tr>
+                <th></th>
+                <th>Total</th>
+                <th class='mini'></th>
+                <th>Rangs</td>
+                <th class='mini'></th>
+                <th>Bonus de classe</th>
+                <th class='mini'></th>
+                <th>Mod de carac</th>
+                <th class='mini'></th>
+                <th>Mod divers</th>
+            </tr>
+            {% for competence in competences %}
+            <tr class='line_competence'>
+                <td><input type='checkbox' class='check_competence' name='competence_classe[{{competence.id}}]'/> {{competence.titre}} ({{competence.caracteristique}})</td>
+                <td><input type='number' name='' class='total_carac' readonly /></td>
+                <td>=</td>
+                <td><input type='number'  min='0' name='competence_rang[{{competence.id}}]' class='rang' value='0' /></td>
+                <td>+</td>
+                <td><input type='number' min='0'  name='competence_bonus_classe[{{competence.id}}]' class='bonus_class' value='0' readonly/></td>
+                <td>+</td>
+                <td><input type='number'  class='mod_carac' name='competence_mod_carac[{{competence.id}}]' data-carac='{{competence.caracteristique}}'/></td>
+                <td>+</td>
+                <td><input type='number'  name='competence_mod_divers[{{competence.id}}]'/></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    </div>
+    <div class='col-md-6'>
+        <div class='bloc_form'>
+            <h2 class='display-5'>Santé et persévérance </h2>
+            <table class='table'>
+                <tr>
+                    <th></th>
+                    <th>Points d'endurance</th>
+                    <th>Points de vie</th>
+                    <th>Points de persévérence</th>
+                </tr>
+                <tr>
+                    <th>Total</th>
+                    <td><input type='number' name='pe_total' id='pe_total' value='{{personnage.pe}}' readonly data-race='0' data-classe='0' /></td>
+                    <td><input type='number' name='pv_total' id='pv_total' value='{{personnage.pv}}' readonly data-race='0' data-classe='0' /></td>
+                    <td><input type='number' name='pp_total' id='pp_total' value='0' readonly data-race='0' data-classe='0' /></td>
+                </tr>
+                <tr>
+                    <th>Actuel</th>
+                    <td><input type='number' name='pe_actuel' value='' /></td>
+                    <td><input type='number' name='pv_actuel' value='' /></td>
+                    <td><input type='number' name='pp_actuel' value='' /></td>
+                </tr>
+            </table>
+
+        </div>
+        <div class='bloc_form'>
+            <h2 class='display-5'>Classe d'armure</h2>
+            <table class='table'>
+                <tr>
+                    <td></td>
+                    <td>Total</td>
+                    <td class='mini_md'></td>
+                    <td>Bonus d'armure</td>
+                    <td class='mini'></td>
+                    <td>Mod Dex</td>
+                    <td class='mini'></td>
+                    <td>Mod Divers</td>
+                </tr>
+                <tr>
+                    <th>CAE</th>
+                    <td><input type='number' readonly value='10' name='CAE' id='cae' /></td>
+                    <td> = 10 + </td>
+                    <td> <input type='number'  /> </td>
+                    <td>+</td>
+                    <td> <input type='number'  id='dex_cae' /> </td>
+                    <td>+</td>
+                    <td> <input type='number' /> </td>
+                </tr>
+                <tr>
+                    <th>CAC</th>
+                    <td><input type='number' readonly value='10' name='CAC' id='cac' /></td>
+                    <td> = 10 + </td>
+                    <td> <input type='number' /> </td>
+                    <td>+</td>
+                    <td> <input type='number' id='dex_cac' /> </td>
+                    <td>+</td>
+                    <td> <input type='number' /> </td>
+                </tr>
+                <tr>
+                    <th>CA vs Manoeuvres offensives</th>
+                    <td><input type='number' readonly value='8' /></td>
+                    <td> = 8 + </td>
+                    <td> CAC </td>
+                    <td>  </td>
+                    <td>  </td>
+                </tr>
+            </table>
+
+        </div>
+        <div class='bloc_form'>
+            <h2 class='display-5'>Jet de sauvegarde</h2>
+            <table class='table'>
+                <tr>
+                    <th></th>
+                    <th>Total</th>
+                    <th class='mini'></th>
+                    <th>JDS de base</th>
+                    <th class='mini'></th>
+                    <th>Mod de carac</th>
+                    <th class='mini'></th>
+                    <th>Mod divers</th>
+                </tr>
+                <tr>
+                    <th>Vigueurs (constitution)</th>
+                    <td><input type='number' name='vigueur' id='vigueur' readonly /></td>
+                    <td >=</td>
+                    <td><input type='number' id='jds_vigueur' class='jds' value='0' /></td>
+                    <td>+</td>
+                    <td><input type='number' id='con_vigueur' readonly /></td>
+                    <td>+</td>
+                    <td><input type='number' /></td>
+                </tr>
+                <tr>
+                    <th>Réflexe (Dextérité)</th>
+                    <td><input type='number' name='reflexe' id='reflexe' readonly /></td>
+                    <td >=</td>
+                    <td><input type='number' id='jds_reflexe' class='jds' value='0' /></td>
+                    <td>+</td>
+                    <td><input type='number' id='dex_reflexe' readonly /></td>
+                    <td>+</td>
+                    <td><input type='number' /></td>
+                </tr>
+                <tr>
+                    <th>Volonté (Sagesse)</th>
+                    <td><input type='number' name='volonte' id='volonte' readonly /></td>
+                    <td >=</td>
+                    <td><input type='number' id='jds_volonte' class='jds' value='0' /></td>
+                    <td>+</td>
+                    <td><input type='number' id='sag_volonte' readonly /></td>
+                    <td>+</td>
+                    <td><input type='number' /></td>
+                </tr>
+            </table>
+        </div>
+        <div class='bloc_form'> 
+            <h2 class='display-5'>Bonus d'attaque</h2>
+            <table class='table'>
+                <tr>
+                    <th></th>
+                    <th>Total</th>
+                    <th class='mini'></th>
+                    <th>BBA</th>
+                    <th class='mini'></th>
+                    <th>Mod for</th>
+                    <th class='mini'></th>
+                    <th>Mod divers</th>
+                </tr>
+                <tr>
+                    <th>Attaque au corps à corps</th>
+                    <td><input type='number' name='bonus_cac' id='bonus_cac' readonly /></td>
+                    <td >=</td>
+                    <td><input type='number' id='bba_cac' class='bba' value='0' /></td>
+                    <td>+</td>
+                    <td><input type='number' id='for_cac' readonly /></td>
+                    <td>+</td>
+                    <td><input type='number' /></td>
+                </tr>
+                <tr>
+                    <th>Attaque à distance</th>
+                    <td><input type='number' name='bonus_dist' id='bonus_dist' readonly /></td>
+                    <td >=</td>
+                    <td><input type='number' id='bba_dist' class='bba' value='0' /></td>
+                    <td>+</td>
+                    <td><input type='number' id='for_dist' readonly /></td>
+                    <td>+</td>
+                    <td><input type='number' /></td>
+                </tr>
+                <tr>
+                    <th>Attaque de lancer</th>
+                    <td><input type='number' name='bonus_lancer' id='bonus_lancer' readonly /></td>
+                    <td >=</td>
+                    <td><input type='number' id='bba_lancer' class='bba' value='0' /></td>
+                    <td>+</td>
+                    <td><input type='number' id='for_lancer' readonly /></td>
+                    <td>+</td>
+                    <td><input type='number' /></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+    </div>
+    </div>
+<div class=''><input type='submit' name='valid_perso' value='Valider' /></div>
+</form>
+
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+
+<script src='{{ asset('test.js') }}'></script>
+
+
+
+{% endblock %}

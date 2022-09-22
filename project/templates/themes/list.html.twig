@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Thèmes</h1>
+<div>
+<a href='{{path('app_form_themes')}}'>Créer un Thème</a>
+</div>
+<ul>
+{% for theme in themes %}
+    <li>{{theme.titre}} <a href='{{path('app_form_themes',{id:theme.id})}}'>Modifier</a> <a href='{{path('app_form_theme_del',{id:theme.id})}}'>Supprimer</a></li>
+{% endfor %}
+</ul>
+
+{% endblock %}

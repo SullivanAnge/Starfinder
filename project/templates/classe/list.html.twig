@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Classes</h1>
+<div>
+<a href='{{path('app_form_classe')}}'>Créer une classe</a>
+</div>
+<ul>
+{% for classe in classes %}
+    <li>{{classe.titre}} <a href='{{path('app_form_classe',{id:classe.id})}}'>Modifier</a> <a href='{{path('app_form_classe_del',{id:classe.id})}}'>Supprimer</a></li>
+{% endfor %}
+</ul>
+
+{% endblock %}

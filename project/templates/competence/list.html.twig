@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Compétences</h1>
+<div>
+<a href='{{path('app_form_competence')}}'>Créer une compétence</a>
+</div>
+<ul>
+{% for competence in competences %}
+    <li>{{competence.titre}} ({{competence.caracteristique}}) <a href='{{path('app_form_competence',{id:competence.id})}}'>Modifier</a> <a href='{{path('app_form_competence_del',{id:competence.id})}}'>Supprimer</a></li>
+{% endfor %}
+</ul>
+
+{% endblock %}

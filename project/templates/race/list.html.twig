@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Races</h1>
+<div>
+<a href='{{path('app_form_race')}}'>Créer une race</a>
+</div>
+<ul>
+{% for race in races %}
+    <li>{{race.titre}} <a href='{{path('app_form_race',{id:race.id})}}'>Modifier</a> <a href='{{path('app_form_race_del',{id:race.id})}}'>Supprimer</a></li>
+{% endfor %}
+</ul>
+
+{% endblock %}
