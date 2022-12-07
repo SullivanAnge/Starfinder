@@ -14,17 +14,24 @@
         <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
-        <nav class='navbar navbar-expand-lg'>
-        <ul class='navbar-nav'>
-            <li class='nav-item'><a href='{{path('app_competence')}}' class="nav-link">Compétences</a></li>
-            <li class='nav-item'><a href='{{path('app_classe')}}' class="nav-link">Classes</a></li>
-            <li class='nav-item'><a href='{{path('app_race')}}' class="nav-link">Races</a></li>
-            <li class='nav-item'><a href='{{path('app_themes')}}' class="nav-link">Thèmes</a></li>
-            <li class='nav-item'><a href='{{path('app_personnage')}}' class="nav-link">Personnages</a></li>
-        </ul>
-        </nav>
+        
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <h1>Écran virtuel du MJ</h1>
+        <div class='container'>
+            <div class='row my-5 justify-content-around'>
+                <a href='{{path('app_personnage')}}' class='col-md-3  nav_card card'>Personnages</a>
+            </div>
+            <div class='row my-5 justify-content-around'>
+                <a href='{{path('app_competence')}}' class='col-md-3  nav_card card'>Compétences</a>
+                <a href='{{path('app_classe')}}' class='col-md-3  nav_card card' >Classes</a>
+            </div>
+            <div class='row my-5 justify-content-around'>
+                <a href='{{path('app_race')}}' class='col-md-3  nav_card card' >Races</a>
+                <a href='{{path('app_themes')}}' class='col-md-3  nav_card card'>Thèmes</a>
+            </div>
+                
+            </div>
+        </div>
     </body>
 </html>

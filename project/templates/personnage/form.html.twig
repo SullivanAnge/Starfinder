@@ -150,8 +150,8 @@
                 </tr>
                 <tr>
                     <th>Total</th>
-                    <td><input type='number' name='pe_total' id='pe_total' value='{{personnage.pe}}' readonly data-race='0' data-classe='0' /></td>
-                    <td><input type='number' name='pv_total' id='pv_total' value='{{personnage.pv}}' readonly data-race='0' data-classe='0' /></td>
+                    <td><input type='number' name='pe_total' id='pe_total' value='{{personnage.pe}}' readonly data-race='0' data-classe='{{personnage.classe.pe}}' /></td>
+                    <td><input type='number' name='pv_total' id='pv_total' value='{{personnage.pv}}' readonly data-race='{{personnage.race.pv}}' data-classe='{{personnage.classe.pv}}' /></td>
                     <td><input type='number' name='pp_total' id='pp_total' value='0' readonly data-race='0' data-classe='0' /></td>
                 </tr>
                 <tr>

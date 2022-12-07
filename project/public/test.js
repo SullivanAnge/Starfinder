@@ -15,9 +15,10 @@ function MajPerso(){
   let modCha = parseInt($("#modCha").val());
 
   
-
+  
   $("#pe_total").val(parseInt($("#pe_total").attr("data-classe"))+parseInt($("#modCon").val()));
   $("#pv_total").val(parseInt($("#pv_total").attr("data-classe"))+parseInt($("#pv_total").attr("data-race")));
+  
 
   $(".mod_carac").each(function(){
     if($(this).attr("data-carac")=="FOR"){

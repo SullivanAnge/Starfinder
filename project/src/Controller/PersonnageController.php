@@ -92,7 +92,7 @@ class PersonnageController extends AbstractController
         $themes = ThemesController::getAll($doctrine);
         $competences = CompetenceController::getAll($doctrine);
 
-
+        
         return $this->render('personnage/form.html.twig', [
             'classes' => $classes,
             'races' => $races,
