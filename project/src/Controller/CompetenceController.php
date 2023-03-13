@@ -34,6 +34,12 @@ class CompetenceController extends AbstractController
 
         return $competences;
     }
+
+    public function getById(ManagerRegistry $doctrine,int $id){
+        $competence = $doctrine->getRepository(Competence::class)->find($id);
+
+        return $competence;
+    }
     /**
      * @Route("/form_competence/{id}",name="app_form_competence")
      */
