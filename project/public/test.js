@@ -177,6 +177,16 @@ $(".rang").change(function(){
   
   MajPerso();
 });
+
+$(".nav-tabs .nav-item .nav-link").click(function(){
+  $(this).closest(".nav-item").siblings().find(".nav-link").removeClass("active");
+  $(this).addClass("active");
+  
+  $('.bloc_infos .bloc_form').removeClass("active");
+  var bloc = $(this).attr("data-bloc");
+  console.log(bloc);
+  $("#"+bloc).addClass("active");
+})
 $( document ).ready(function() {
   MajPerso();
 });

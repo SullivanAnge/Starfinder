@@ -2,5 +2,8 @@
 input[type=number]{width:100%}
 th.mini{width:20px}
 td.mini_md{width:65px}
-.bloc_form{padding:20px}
-.display-5{margin-bottom:20px;padding-bottom:10px;border-bottom:solid 1px #212529}
+.bloc_form{padding:20px 0;display:none;}
+.bloc_form.active{display: block;}
+.display-5{margin-bottom:20px;padding-bottom:10px;border-bottom:solid 1px #FFF}
+.nav-link{color:#fff}
+.nav-item:hover .nav-link{color:#fff;cursor:pointer;}
