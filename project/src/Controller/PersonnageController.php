@@ -94,6 +94,10 @@ class PersonnageController extends AbstractController
                         'personnage' => $personnage,
                         'competence' => $competence_entity
                     ]);
+                    //si personnage existant mais valeurs de compétences non renseigné, on part de 0
+                    if($persoCompetence == null){
+                        $persoCompetence = new PersoCompetence();
+                    }
                 //sinon on pars à 0
                 }else{
                     $persoCompetence = new PersoCompetence();
@@ -141,17 +145,7 @@ class PersonnageController extends AbstractController
                 $persoCompetences[$val->getCompetence()->getId()] = $val;
             }
           
-            
-            
-
-            
         }
-        
-       
-       
-
-        
-
         
         return $this->render('personnage/form.html.twig', [
             'classes' => $classes,
