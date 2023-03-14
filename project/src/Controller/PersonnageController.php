@@ -130,17 +130,24 @@ class PersonnageController extends AbstractController
         $competences = CompetenceController::getAll($doctrine);
 
         if($id){
-            /*foreach($competences as $competence){
-                $persoCompetences[] = $doctrine->getRepository(PersoCompetence::class)->findOneBy([
-                    'personnage' => $personnage,
-                    'competence' => $competence
-                ]);
-            }*/
+            $persoCompetences_tmp = $doctrine->getRepository(PersoCompetence::class)->findBy([
+                'personnage' => $personnage,
+                
+            ]);
+            $persoCompetences = array();
+            
+            foreach($persoCompetences_tmp as $key=>$val){
+               
+                $persoCompetences[$val->getCompetence()->getId()] = $val;
+            }
+          
+            
             
 
             
         }
         
+       
        
 
         
@@ -151,7 +158,8 @@ class PersonnageController extends AbstractController
             'races' => $races,
             'themes' => $themes,
             'personnage'=>$personnage,
-            'competences'=>$competences
+            'competences'=>$competences,
+            'persoCompetences'=>$persoCompetences
         ]);
     }
 

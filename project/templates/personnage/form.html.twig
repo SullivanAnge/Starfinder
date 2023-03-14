@@ -123,16 +123,16 @@
             </tr>
             {% for competence in competences %}
             <tr class='line_competence'>
-                <td><input type='checkbox' class='check_competence' name='competence[{{competence.id}}][classe]' {{persoCompetences[competence.id].CompClasse==1 ? "selected":"" }} /> {{competence.titre}} ({{competence.caracteristique}})</td>
+                <td><input type='checkbox' class='check_competence' name='competence[{{competence.id}}][classe]' {{persoCompetences[competence.id].CompClasse==1 ? "checked":"" }} /> {{competence.titre}} ({{competence.caracteristique}})</td>
                 <td><input type='number' name='' class='total_carac' readonly /></td>
                 <td>=</td>
-                <td><input type='number'  min='0' name='competence[{{competence.id}}][rang]' class='rang' value='0' /></td>
+                <td><input type='number'  min='0' name='competence[{{competence.id}}][rang]' class='rang' value='{{persoCompetences[competence.id].rang}}' /></td>
                 <td>+</td>
-                <td><input type='number' min='0'  name='competence[{{competence.id}}][bonus_classe]' class='bonus_class' value='0' readonly/></td>
+                <td><input type='number' min='0'  name='competence[{{competence.id}}][bonus_classe]' class='bonus_class' value='{{persoCompetences[competence.id].bonusClasse}}' readonly/></td>
                 <td>+</td>
-                <td><input type='number'  class='mod_carac' name='competence[{{competence.id}}][mod_carac]' data-carac='{{competence.caracteristique}}' value='0'/></td>
+                <td><input type='number'  class='mod_carac' name='competence[{{competence.id}}][mod_carac]' data-carac='{{competence.caracteristique}}' value='{{persoCompetences[competence.id].modCarac}}'/></td>
                 <td>+</td>
-                <td><input type='number'  name='competence[{{competence.id}}][mod_divers]' value='0'/></td>
+                <td><input type='number'  name='competence[{{competence.id}}][mod_divers]' value='{{persoCompetences[competence.id].modDivers}}'/></td>
             </tr>
             {% endfor %}
         </table>
