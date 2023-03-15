@@ -72,7 +72,7 @@ function MajPerso(){
 $(".carac,.jds,.bba").change(function(){
   MajPerso();
 })
-
+//selection de la classe
 $("#select_classe").change(function(){
     var classe = $(this).val();
     $.ajax({
@@ -93,7 +93,7 @@ $("#select_classe").change(function(){
         MajPerso();
       })
 });
-
+//selection de la race
 $("#select_race").change(function(){
   var race = $(this).val();
     $.ajax({
@@ -124,8 +124,8 @@ $("#select_race").change(function(){
         MajPerso();
       })
 });
-
-$("#select_theme").change(function(){
+//selection du theme
+/*$("#select_theme").change(function(){ //fonction obsolète 
   var theme = $(this).val();
   $.ajax({
     url: "/gettheme/"+theme,
@@ -149,8 +149,42 @@ $("#select_theme").change(function(){
 
     MajPerso();
   })
-});
+});*/
 
+$(".chooseTheme").click(function(){
+  $(".chooseTheme").removeClass("active");
+  $(this).addClass("active");
+})
+$("#saveTheme").click(function(){
+  var theme = $(".chooseTheme.active").attr("data-id");
+  $.ajax({
+    url: "/gettheme/"+theme,
+    
+  }).done(function(data){
+    //raz des valeur
+    $("#caracFOR").val(parseInt($("#caracFOR").val())-parseInt($("#caracFOR").attr("data-theme")));
+    $("#caracDEX").val(parseInt($("#caracDEX").val())-parseInt($("#caracDEX").attr("data-theme")));
+    $("#caracCON").val(parseInt($("#caracCON").val())-parseInt($("#caracCON").attr("data-theme")));
+    $("#caracINT").val(parseInt($("#caracINT").val())-parseInt($("#caracINT").attr("data-theme")));
+    $("#caracSAG").val(parseInt($("#caracSAG").val())-parseInt($("#caracSAG").attr("data-theme")));
+    $("#caracCHA").val(parseInt($("#caracCHA").val())-parseInt($("#caracCHA").attr("data-theme")));
+
+    //ajout des nouvelles valeurs
+    $("#caracFOR").val(parseInt($("#caracFOR").val())+parseInt(data.for)).attr("data-theme",parseInt(data.for));
+    $("#caracDEX").val(parseInt($("#caracDEX").val())+parseInt(data.dex)).attr("data-theme",parseInt(data.dex));
+    $("#caracCON").val(parseInt($("#caracCON").val())+parseInt(data.con)).attr("data-theme",parseInt(data.con));
+    $("#caracINT").val(parseInt($("#caracINT").val())+parseInt(data.int)).attr("data-theme",parseInt(data.int));
+    $("#caracSAG").val(parseInt($("#caracSAG").val())+parseInt(data.sag)).attr("data-theme",parseInt(data.sag));
+    $("#caracCHA").val(parseInt($("#caracCHA").val())+parseInt(data.cha)).attr("data-theme",parseInt(data.cha));
+
+    $("#chooseThemeBtn").text(data.titre);
+    $("#inputTheme").val(data.id);
+    MajPerso();
+  })
+})
+
+
+//cocher une compétence
 $(".check_competence").click(function(){
   let line = $(this).closest(".line_competence");
   let rang = parseInt(line.find(".rang").val());
@@ -161,7 +195,7 @@ $(".check_competence").click(function(){
   }
   MajPerso();
 })
-
+//changement rang
 $(".rang").change(function(){
   let val = parseInt($(this).val());
   let line = $(this).closest(".line_competence");
@@ -177,7 +211,7 @@ $(".rang").change(function(){
   
   MajPerso();
 });
-
+//navigation feuille perso
 $(".nav-tabs .nav-item .nav-link").click(function(){
   $(this).closest(".nav-item").siblings().find(".nav-link").removeClass("active");
   $(this).addClass("active");

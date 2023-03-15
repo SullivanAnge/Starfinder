@@ -1,5 +1,5 @@
 <div class='col-md-4'>
-    <div class='chooseTheme card '>
+    <div class='chooseTheme card {{personnage.themes is defined and personnage.themes.id == theme.id ? "active":""}}' data-id='{{theme.id}}'>
         <div class='row'>
             <div class='col-md-4'>
                 <img src="{{asset('img/theme_' ~ theme.id ~ '.png')}}" class="card-img-top" >

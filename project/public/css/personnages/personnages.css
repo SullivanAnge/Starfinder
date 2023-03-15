@@ -13,3 +13,5 @@ td.mini_md{width:65px}
 .modal-content h1{margin:20px}
 .chooseTheme .card-text{font-size: 11px;}
 .chooseTheme{height: 85%;margin: 10px;padding: 10px;}
+.chooseTheme:hover{cursor:pointer;background:#5accf5;color:#fff}
+.chooseTheme.active{background:#5accf5;color:#fff}

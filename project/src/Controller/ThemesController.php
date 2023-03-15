@@ -39,6 +39,7 @@ class ThemesController extends AbstractController
 
         $response = new Response();
         $response->setContent(json_encode([
+            'id' => $themes->getId(),
             'titre' => $themes->getTitre(),
             'texte' => $themes->getTxt(),
             'for'=> $themes->getBonusFOR(),
