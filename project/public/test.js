@@ -187,6 +187,7 @@ $(".nav-tabs .nav-item .nav-link").click(function(){
   console.log(bloc);
   $("#"+bloc).addClass("active");
 })
+
 $( document ).ready(function() {
   MajPerso();
 });

@@ -12,7 +12,30 @@
 <div class='col-md-12'>
 <div class='bloc_form active'>
 <h1 class='display-2'>Formulaire Personnage</h1>
+<!-- Button trigger modal -->
 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Choix du thème</h1>
+      
+      <div class="modal-body">
+        <div class='row'>
+            {% for theme in themes %}
+                {% include 'personnage/themeComponent.html.twig' %}
+            {% endfor %}
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
     <p>
         <label>Nom : </label>
         <input type='text' name='nom' value='{{personnage.nom}}'/>
@@ -30,11 +53,19 @@
     
     <p>
         <label>Thème : </label>
-        <select class='form-select' name='theme' id='select_theme'>
+        <!--<select class='form-select' name='theme' id='select_theme'>
             {% for theme in themes %}
                 <option {{ (personnage.themes == theme) ? 'selected' : '' }} value='{{theme.id}}'>{{theme.titre}}</option>
             {% endfor %}
-        </select>
+        </select>-->
+
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            {% if personnage.themes is defined  %}
+                {{personnage.themes.titre}}
+            {% else %}
+                Choisissez votre thème
+            {% endif %}
+        </button>
     
     </p>
     <p>
