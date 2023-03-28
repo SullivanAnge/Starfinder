@@ -68,6 +68,28 @@ function MajPerso(){
   $("#bonus_lancer").val(parseInt($("#bba_lancer").val())+modForce);
 }
 
+function startLoading(){
+  //on ferme la modal
+  $("button[data-bs-dismiss=modal]").trigger("click");
+  //on revient en haut de page
+  $("html, body").scrollTop(0);
+  //apparition de l'animation de chargement
+  $("#loadingBackground").addClass("lds-roller");
+  //on bloque le scroll
+  $("body").addClass("loading");
+}
+
+function endLoading(){
+  //fin de l'animation de chargement
+  $("#loadingBackground").removeClass("lds-roller");
+  //on débloque le scroll
+  $("body").removeClass("loading");
+}
+
+function changeValue(){
+  
+}
+
 
 $(".carac,.jds,.bba").change(function(){
   MajPerso();
@@ -159,8 +181,12 @@ $("#saveTheme").click(function(){
   var theme = $(".chooseTheme.active").attr("data-id");
   $.ajax({
     url: "/gettheme/"+theme,
-    
+    beforeSend : function(){
+      startLoading();
+      
+    }
   }).done(function(data){
+    
     //raz des valeur
     $("#caracFOR").val(parseInt($("#caracFOR").val())-parseInt($("#caracFOR").attr("data-theme")));
     $("#caracDEX").val(parseInt($("#caracDEX").val())-parseInt($("#caracDEX").attr("data-theme")));
@@ -177,9 +203,12 @@ $("#saveTheme").click(function(){
     $("#caracSAG").val(parseInt($("#caracSAG").val())+parseInt(data.sag)).attr("data-theme",parseInt(data.sag));
     $("#caracCHA").val(parseInt($("#caracCHA").val())+parseInt(data.cha)).attr("data-theme",parseInt(data.cha));
 
+    //modification infos thème
     $("#chooseThemeBtn").text(data.titre);
     $("#inputTheme").val(data.id);
+
     MajPerso();
+    endLoading();
   })
 })
 
