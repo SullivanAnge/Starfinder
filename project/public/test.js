@@ -87,7 +87,7 @@ function endLoading(){
 }
 
 function changeValue(){
-  
+
 }
 
 
@@ -116,63 +116,51 @@ $("#select_classe").change(function(){
       })
 });
 //selection de la race
-$("#select_race").change(function(){
-  var race = $(this).val();
-    $.ajax({
-        url: "/getrace/"+race,
-        
-      }).done(function(data){
-        //raz des valeur
-        $("#caracFOR").val(parseInt($("#caracFOR").val())-parseInt($("#caracFOR").attr("data-race")));
-        $("#caracDEX").val(parseInt($("#caracDEX").val())-parseInt($("#caracDEX").attr("data-race")));
-        $("#caracCON").val(parseInt($("#caracCON").val())-parseInt($("#caracCON").attr("data-race")));
-        $("#caracINT").val(parseInt($("#caracINT").val())-parseInt($("#caracINT").attr("data-race")));
-        $("#caracSAG").val(parseInt($("#caracSAG").val())-parseInt($("#caracSAG").attr("data-race")));
-        $("#caracCHA").val(parseInt($("#caracCHA").val())-parseInt($("#caracCHA").attr("data-race")));
-
-        $("#pv_total").val(parseInt($("#pv_total").val())-parseInt($("#pv_total").attr("data-race")));
-
-        //ajout des nouvelles valeurs
-
-        $("#caracFOR").val(parseInt($("#caracFOR").val())+parseInt(data.for)).attr("data-race",parseInt(data.for));
-        $("#caracDEX").val(parseInt($("#caracDEX").val())+parseInt(data.dex)).attr("data-race",parseInt(data.dex));
-        $("#caracCON").val(parseInt($("#caracCON").val())+parseInt(data.con)).attr("data-race",parseInt(data.con));
-        $("#caracINT").val(parseInt($("#caracINT").val())+parseInt(data.int)).attr("data-race",parseInt(data.int));
-        $("#caracSAG").val(parseInt($("#caracSAG").val())+parseInt(data.sag)).attr("data-race",parseInt(data.sag));
-        $("#caracCHA").val(parseInt($("#caracCHA").val())+parseInt(data.cha)).attr("data-race",parseInt(data.cha));
-
-        $("#pv_total").attr("data-race",data.pv);
-
-        MajPerso();
-      })
-});
-//selection du theme
-/*$("#select_theme").change(function(){ //fonction obsolète 
-  var theme = $(this).val();
+$(".chooseRace").click(function(){
+  $(".chooseRace").removeClass("active");
+  $(this).addClass("active");
+})
+$("#saveRace").click(function(){
+  var race = $(".chooseRace.active").attr("data-id");
   $.ajax({
-    url: "/gettheme/"+theme,
-    
+    url: "/getrace/"+race,
+    beforeSend : function(){
+      startLoading();
+      
+    }
   }).done(function(data){
+    
     //raz des valeur
-    $("#caracFOR").val(parseInt($("#caracFOR").val())-parseInt($("#caracFOR").attr("data-theme")));
-    $("#caracDEX").val(parseInt($("#caracDEX").val())-parseInt($("#caracDEX").attr("data-theme")));
-    $("#caracCON").val(parseInt($("#caracCON").val())-parseInt($("#caracCON").attr("data-theme")));
-    $("#caracINT").val(parseInt($("#caracINT").val())-parseInt($("#caracINT").attr("data-theme")));
-    $("#caracSAG").val(parseInt($("#caracSAG").val())-parseInt($("#caracSAG").attr("data-theme")));
-    $("#caracCHA").val(parseInt($("#caracCHA").val())-parseInt($("#caracCHA").attr("data-theme")));
+    $("#caracFOR").val(parseInt($("#caracFOR").val())-parseInt($("#caracFOR").attr("data-race")));
+    $("#caracDEX").val(parseInt($("#caracDEX").val())-parseInt($("#caracDEX").attr("data-race")));
+    $("#caracCON").val(parseInt($("#caracCON").val())-parseInt($("#caracCON").attr("data-race")));
+    $("#caracINT").val(parseInt($("#caracINT").val())-parseInt($("#caracINT").attr("data-race")));
+    $("#caracSAG").val(parseInt($("#caracSAG").val())-parseInt($("#caracSAG").attr("data-race")));
+    $("#caracCHA").val(parseInt($("#caracCHA").val())-parseInt($("#caracCHA").attr("data-race")));
+
+    $("#pv_total").val(parseInt($("#pv_total").val())-parseInt($("#pv_total").attr("data-race")));
 
     //ajout des nouvelles valeurs
-    $("#caracFOR").val(parseInt($("#caracFOR").val())+parseInt(data.for)).attr("data-theme",parseInt(data.for));
-    $("#caracDEX").val(parseInt($("#caracDEX").val())+parseInt(data.dex)).attr("data-theme",parseInt(data.dex));
-    $("#caracCON").val(parseInt($("#caracCON").val())+parseInt(data.con)).attr("data-theme",parseInt(data.con));
-    $("#caracINT").val(parseInt($("#caracINT").val())+parseInt(data.int)).attr("data-theme",parseInt(data.int));
-    $("#caracSAG").val(parseInt($("#caracSAG").val())+parseInt(data.sag)).attr("data-theme",parseInt(data.sag));
-    $("#caracCHA").val(parseInt($("#caracCHA").val())+parseInt(data.cha)).attr("data-theme",parseInt(data.cha));
+
+    $("#caracFOR").val(parseInt($("#caracFOR").val())+parseInt(data.for)).attr("data-race",parseInt(data.for));
+    $("#caracDEX").val(parseInt($("#caracDEX").val())+parseInt(data.dex)).attr("data-race",parseInt(data.dex));
+    $("#caracCON").val(parseInt($("#caracCON").val())+parseInt(data.con)).attr("data-race",parseInt(data.con));
+    $("#caracINT").val(parseInt($("#caracINT").val())+parseInt(data.int)).attr("data-race",parseInt(data.int));
+    $("#caracSAG").val(parseInt($("#caracSAG").val())+parseInt(data.sag)).attr("data-race",parseInt(data.sag));
+    $("#caracCHA").val(parseInt($("#caracCHA").val())+parseInt(data.cha)).attr("data-race",parseInt(data.cha));
+
+    $("#pv_total").attr("data-race",data.pv);
+
+    //modification infos race
+    $("#chooseRaceBtn").text(data.titre);
+    $("#inputRace").val(data.id);
 
     MajPerso();
+    endLoading();
   })
-});*/
+});
 
+//Selection du theme
 $(".chooseTheme").click(function(){
   $(".chooseTheme").removeClass("active");
   $(this).addClass("active");
@@ -210,7 +198,7 @@ $("#saveTheme").click(function(){
     MajPerso();
     endLoading();
   })
-})
+});
 
 
 //cocher une compétence

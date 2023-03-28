@@ -15,8 +15,8 @@
 
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal themes-->
+<div class="modal fade" id="themeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content">
       
@@ -36,30 +36,53 @@
     </div>
   </div>
 </div>
+<!-- modal race -->
+<div class="modal fade" id="raceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Choix de la race</h1>
+      
+      <div class="modal-body">
+        <div class='row'>
+            {% for race in races %}
+                {% include 'personnage/raceComponent.html.twig' %}
+            {% endfor %}
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id='saveRace'>Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
     <p>
         <label>Nom : </label>
         <input type='text' name='nom' value='{{personnage.nom}}'/>
     </p>
     <p>
         <label>Race : </label>
-        <select class='form-select' name='race' id='select_race'>
+        <!--<select class='form-select' name='race' id='select_race'>
             {% for race in races %}
                 <option {{ (personnage.race == race) ? 'selected' : '' }} value='{{race.id}}'>{{race.titre}}</option>
             {% endfor %}
-        </select>
+        </select>-->
+        <button type="button" id='chooseRaceBtn' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#raceModal">
+            {% if personnage.race is defined  %}
+                {{personnage.race.titre}}
+            {% else %}
+                Choisissez votre race
+            {% endif %}
+        </button>
+        <input type='hidden' id='inputRace' name='race' value='{{personnage.race is defined ? personnage.race.id : "0"}}' />
     
     </p>
     
     
     <p>
         <label>Thème : </label>
-        <!--<select class='form-select' name='theme' id='select_theme'>
-            {% for theme in themes %}
-                <option {{ (personnage.themes == theme) ? 'selected' : '' }} value='{{theme.id}}'>{{theme.titre}}</option>
-            {% endfor %}
-        </select>-->
-
-        <button type="button" id='chooseThemeBtn' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" id='chooseThemeBtn' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#themeModal">
             {% if personnage.themes is defined  %}
                 {{personnage.themes.titre}}
             {% else %}

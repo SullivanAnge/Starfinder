@@ -11,10 +11,11 @@ td.mini_md{width:65px}
 .modal-content{background:#000}
 .modal-body{display: flex;}
 .modal-content h1{margin:20px}
-.chooseTheme .card-text{font-size: 11px;}
-.chooseTheme{height: 85%;margin: 10px;padding: 10px;}
-.chooseTheme:hover{cursor:pointer;background:#5accf5;color:#fff}
-.chooseTheme.active{background:#5accf5;color:#fff}
+.chooseTheme .card-text,.chooseRace .card-text{font-size: 11px;}
+.chooseTheme,.chooseRace{height: 85%;margin: 10px;padding: 10px;}
+.chooseTheme:hover,.chooseRace:hover{cursor:pointer;background:#5accf5;color:#fff}
+.chooseTheme.active,.chooseRace.active{background:#5accf5;color:#fff}
+.chooseRace .card-title{}
 
 .lds-roller {
     display: inline-block;
