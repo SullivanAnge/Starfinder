@@ -43,6 +43,7 @@ class ClasseController extends AbstractController
             'texte' => $classes->getText(),
             'pv'=> $classes->getPv(),
             'pe'=> $classes->getPe(),
+            'id'=> $classes->getId()
         ]));
         $response->headers->set('Content-Type', 'application/json');
         return $response;

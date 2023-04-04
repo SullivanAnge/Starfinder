@@ -95,11 +95,18 @@ $(".carac,.jds,.bba").change(function(){
   MajPerso();
 })
 //selection de la classe
-$("#select_classe").change(function(){
-    var classe = $(this).val();
+$(".chooseClasse").click(function(){
+  $(".chooseClasse").removeClass("active");
+  $(this).addClass("active");
+})
+$("#saveClasse").click(function(){
+  var classe = $(".chooseClasse.active").attr("data-id");
     $.ajax({
         url: "/getclasse/"+classe,
-        
+        beforeSend : function(){
+          startLoading();
+          
+        }
       }).done(function(data){
         
       
@@ -112,7 +119,12 @@ $("#select_classe").change(function(){
         $("#pe_total").attr("data-classe",data.pe);
         $("#pv_total").attr("data-classe",data.pv);
 
+        //modification infos classe
+        $("#chooseClasseBtn").text(data.titre);
+        $("#inputClasse").val(data.id);
+
         MajPerso();
+        endLoading();
       })
 });
 //selection de la race

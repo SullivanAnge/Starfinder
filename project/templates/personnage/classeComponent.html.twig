@@ -1,0 +1,14 @@
+<div class='col-md-4'>
+    <div class='chooseClasse card {{personnage.classe is defined and personnage.classe.id == classe.id ? "active":""}}' data-id='{{classe.id}}'>
+        <div class='row'>
+            <div class='col-md-4'>
+                <img src="{{asset('img/classe_' ~ classe.id ~ '.png')}}" class="card-img-top" >
+            </div>
+            <div class='col-md-8'>
+               <h5 class="card-title">{{classe.titre}}</h5>
+               <div class='card-text '>{{classe.text | raw}}</div>
+              
+            </div>
+        </div>
+    </div>
+</div>
