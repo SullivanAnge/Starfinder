@@ -45,6 +45,8 @@ class PersonnageController extends AbstractController
             $personnage->setCaracINT(10);
             $personnage->setCaracSAG(10);
             $personnage->setCaracCHA(10);
+            $personnage->setPE(0);
+            $personnage->setPV(0);
         }
 
         //-------------------------------Insertion personnage---------------------------------------
@@ -132,13 +134,13 @@ class PersonnageController extends AbstractController
         $races = RaceController::getAll($doctrine);
         $themes = ThemesController::getAll($doctrine);
         $competences = CompetenceController::getAll($doctrine);
-
+        $persoCompetences = array();
         if($id){
             $persoCompetences_tmp = $doctrine->getRepository(PersoCompetence::class)->findBy([
                 'personnage' => $personnage,
                 
             ]);
-            $persoCompetences = array();
+            
             
             foreach($persoCompetences_tmp as $key=>$val){
                
