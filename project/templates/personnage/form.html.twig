@@ -82,45 +82,51 @@
         <label>Nom : </label>
         <input type='text' name='nom' value='{{personnage.nom}}'/>
     </p>
-    <p>
-        <label>Race : </label>
-        <button type="button" id='chooseRaceBtn' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#raceModal">
-            {% if personnage.race is defined  %}
-                {{personnage.race.titre}}
-            {% else %}
-                Choisissez votre race
-            {% endif %}
-        </button>
-        <input type='hidden' id='inputRace' name='race' value='{{personnage.race is defined ? personnage.race.id : "0"}}' />
-    
-    </p>
-    
-    
-    <p>
-        <label>Thème : </label>
-        <button type="button" id='chooseThemeBtn' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#themeModal">
-            {% if personnage.themes is defined  %}
-                {{personnage.themes.titre}}
-            {% else %}
-                Choisissez votre thème
-            {% endif %}
-        </button>
-        <input type='hidden' id='inputTheme' name='theme' value='{{personnage.themes is defined ? personnage.themes.id : "0"}}' />
-    
-    </p>
-    <p>
-        <label>Classe : </label>
-        <button type="button" id='chooseClasseBtn' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#classeModal">
-            {% if personnage.classe is defined  %}
-                {{personnage.classe.titre}}
-            {% else %}
-                Choisissez votre classe
-            {% endif %}
-        </button>
-        <input type='hidden' id='inputClasse' name='classe' value='{{personnage.classe is defined ? personnage.classe.id : "0"}}' />
+    <div class='row'>
+        <div class='col-md-4'>
+           
+                <label>Race : </label>
+                <button type="button" id='chooseRaceBtn' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#raceModal">
+                    {% if personnage.race is defined  %}
+                        {{personnage.race.titre}}
+                    {% else %}
+                        Choisissez votre race
+                    {% endif %}
+                </button>
+                <input type='hidden' id='inputRace' name='race' value='{{personnage.race is defined ? personnage.race.id : "0"}}' />
+            
+            
+        </div>
+        <div class='col-md-4'>
+            
+                <label>Thème : </label>
+                <button type="button" id='chooseThemeBtn' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#themeModal">
+                    {% if personnage.themes is defined  %}
+                        {{personnage.themes.titre}}
+                    {% else %}
+                        Choisissez votre thème
+                    {% endif %}
+                </button>
+                <input type='hidden' id='inputTheme' name='theme' value='{{personnage.themes is defined ? personnage.themes.id : "0"}}' />
+            
+            
+        </div>
+        <div class='col-md-4'> 
+            
+                <label>Classe : </label>
+                <button type="button" id='chooseClasseBtn' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#classeModal">
+                    {% if personnage.classe is defined  %}
+                        {{personnage.classe.titre}}
+                    {% else %}
+                        Choisissez votre classe
+                    {% endif %}
+                </button>
+                <input type='hidden' id='inputClasse' name='classe' value='{{personnage.classe is defined ? personnage.classe.id : "0"}}' />
 
-    
-    </p>
+            
+            
+        </div>
+    </div>
     </div>
     </div>
     </div>
