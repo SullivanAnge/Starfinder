@@ -68,16 +68,45 @@ function MajPerso(){
   $("#bonus_lancer").val(parseInt($("#bba_lancer").val())+modForce);
 }
 
+function startLoading(){
+  //on ferme la modal
+  $("button[data-bs-dismiss=modal]").trigger("click");
+  //on revient en haut de page
+  $("html, body").scrollTop(0);
+  //apparition de l'animation de chargement
+  $("#loadingBackground").addClass("lds-roller");
+  //on bloque le scroll
+  $("body").addClass("loading");
+}
+
+function endLoading(){
+  //fin de l'animation de chargement
+  $("#loadingBackground").removeClass("lds-roller");
+  //on débloque le scroll
+  $("body").removeClass("loading");
+}
+
+function changeValue(){
+
+}
+
 
 $(".carac,.jds,.bba").change(function(){
   MajPerso();
 })
-
-$("#select_classe").change(function(){
-    var classe = $(this).val();
+//selection de la classe
+$(".chooseClasse").click(function(){
+  $(".chooseClasse").removeClass("active");
+  $(this).addClass("active");
+})
+$("#saveClasse").click(function(){
+  var classe = $(".chooseClasse.active").attr("data-id");
     $.ajax({
         url: "/getclasse/"+classe,
-        
+        beforeSend : function(){
+          startLoading();
+          
+        }
       }).done(function(data){
         
       
@@ -90,47 +119,74 @@ $("#select_classe").change(function(){
         $("#pe_total").attr("data-classe",data.pe);
         $("#pv_total").attr("data-classe",data.pv);
 
-        MajPerso();
-      })
-});
-
-$("#select_race").change(function(){
-  var race = $(this).val();
-    $.ajax({
-        url: "/getrace/"+race,
-        
-      }).done(function(data){
-        //raz des valeur
-        $("#caracFOR").val(parseInt($("#caracFOR").val())-parseInt($("#caracFOR").attr("data-race")));
-        $("#caracDEX").val(parseInt($("#caracDEX").val())-parseInt($("#caracDEX").attr("data-race")));
-        $("#caracCON").val(parseInt($("#caracCON").val())-parseInt($("#caracCON").attr("data-race")));
-        $("#caracINT").val(parseInt($("#caracINT").val())-parseInt($("#caracINT").attr("data-race")));
-        $("#caracSAG").val(parseInt($("#caracSAG").val())-parseInt($("#caracSAG").attr("data-race")));
-        $("#caracCHA").val(parseInt($("#caracCHA").val())-parseInt($("#caracCHA").attr("data-race")));
-
-        $("#pv_total").val(parseInt($("#pv_total").val())-parseInt($("#pv_total").attr("data-race")));
-
-        //ajout des nouvelles valeurs
-
-        $("#caracFOR").val(parseInt($("#caracFOR").val())+parseInt(data.for)).attr("data-race",parseInt(data.for));
-        $("#caracDEX").val(parseInt($("#caracDEX").val())+parseInt(data.dex)).attr("data-race",parseInt(data.dex));
-        $("#caracCON").val(parseInt($("#caracCON").val())+parseInt(data.con)).attr("data-race",parseInt(data.con));
-        $("#caracINT").val(parseInt($("#caracINT").val())+parseInt(data.int)).attr("data-race",parseInt(data.int));
-        $("#caracSAG").val(parseInt($("#caracSAG").val())+parseInt(data.sag)).attr("data-race",parseInt(data.sag));
-        $("#caracCHA").val(parseInt($("#caracCHA").val())+parseInt(data.cha)).attr("data-race",parseInt(data.cha));
-
-        $("#pv_total").attr("data-race",data.pv);
+        //modification infos classe
+        $("#chooseClasseBtn").text(data.titre);
+        $("#inputClasse").val(data.id);
 
         MajPerso();
+        endLoading();
       })
 });
+//selection de la race
+$(".chooseRace").click(function(){
+  $(".chooseRace").removeClass("active");
+  $(this).addClass("active");
+})
+$("#saveRace").click(function(){
+  var race = $(".chooseRace.active").attr("data-id");
+  $.ajax({
+    url: "/getrace/"+race,
+    beforeSend : function(){
+      startLoading();
+      
+    }
+  }).done(function(data){
+    
+    //raz des valeur
+    $("#caracFOR").val(parseInt($("#caracFOR").val())-parseInt($("#caracFOR").attr("data-race")));
+    $("#caracDEX").val(parseInt($("#caracDEX").val())-parseInt($("#caracDEX").attr("data-race")));
+    $("#caracCON").val(parseInt($("#caracCON").val())-parseInt($("#caracCON").attr("data-race")));
+    $("#caracINT").val(parseInt($("#caracINT").val())-parseInt($("#caracINT").attr("data-race")));
+    $("#caracSAG").val(parseInt($("#caracSAG").val())-parseInt($("#caracSAG").attr("data-race")));
+    $("#caracCHA").val(parseInt($("#caracCHA").val())-parseInt($("#caracCHA").attr("data-race")));
 
-$("#select_theme").change(function(){
-  var theme = $(this).val();
+    $("#pv_total").val(parseInt($("#pv_total").val())-parseInt($("#pv_total").attr("data-race")));
+
+    //ajout des nouvelles valeurs
+
+    $("#caracFOR").val(parseInt($("#caracFOR").val())+parseInt(data.for)).attr("data-race",parseInt(data.for));
+    $("#caracDEX").val(parseInt($("#caracDEX").val())+parseInt(data.dex)).attr("data-race",parseInt(data.dex));
+    $("#caracCON").val(parseInt($("#caracCON").val())+parseInt(data.con)).attr("data-race",parseInt(data.con));
+    $("#caracINT").val(parseInt($("#caracINT").val())+parseInt(data.int)).attr("data-race",parseInt(data.int));
+    $("#caracSAG").val(parseInt($("#caracSAG").val())+parseInt(data.sag)).attr("data-race",parseInt(data.sag));
+    $("#caracCHA").val(parseInt($("#caracCHA").val())+parseInt(data.cha)).attr("data-race",parseInt(data.cha));
+
+    $("#pv_total").attr("data-race",data.pv);
+
+    //modification infos race
+    $("#chooseRaceBtn").text(data.titre);
+    $("#inputRace").val(data.id);
+
+    MajPerso();
+    endLoading();
+  })
+});
+
+//Selection du theme
+$(".chooseTheme").click(function(){
+  $(".chooseTheme").removeClass("active");
+  $(this).addClass("active");
+})
+$("#saveTheme").click(function(){
+  var theme = $(".chooseTheme.active").attr("data-id");
   $.ajax({
     url: "/gettheme/"+theme,
-    
+    beforeSend : function(){
+      startLoading();
+      
+    }
   }).done(function(data){
+    
     //raz des valeur
     $("#caracFOR").val(parseInt($("#caracFOR").val())-parseInt($("#caracFOR").attr("data-theme")));
     $("#caracDEX").val(parseInt($("#caracDEX").val())-parseInt($("#caracDEX").attr("data-theme")));
@@ -147,10 +203,17 @@ $("#select_theme").change(function(){
     $("#caracSAG").val(parseInt($("#caracSAG").val())+parseInt(data.sag)).attr("data-theme",parseInt(data.sag));
     $("#caracCHA").val(parseInt($("#caracCHA").val())+parseInt(data.cha)).attr("data-theme",parseInt(data.cha));
 
+    //modification infos thème
+    $("#chooseThemeBtn").text(data.titre);
+    $("#inputTheme").val(data.id);
+
     MajPerso();
+    endLoading();
   })
 });
 
+
+//cocher une compétence
 $(".check_competence").click(function(){
   let line = $(this).closest(".line_competence");
   let rang = parseInt(line.find(".rang").val());
@@ -161,7 +224,7 @@ $(".check_competence").click(function(){
   }
   MajPerso();
 })
-
+//changement rang
 $(".rang").change(function(){
   let val = parseInt($(this).val());
   let line = $(this).closest(".line_competence");
@@ -177,6 +240,17 @@ $(".rang").change(function(){
   
   MajPerso();
 });
+//navigation feuille perso
+$(".nav-tabs .nav-item .nav-link").click(function(){
+  $(this).closest(".nav-item").siblings().find(".nav-link").removeClass("active");
+  $(this).addClass("active");
+  
+  $('.bloc_infos .bloc_form').removeClass("active");
+  var bloc = $(this).attr("data-bloc");
+  console.log(bloc);
+  $("#"+bloc).addClass("active");
+})
+
 $( document ).ready(function() {
   MajPerso();
 });

@@ -30,6 +30,7 @@
 
   
 body{background-image: linear-gradient(to right, #213991 0%, #256681 31%, #56317a 100%);font-family: 'Orbitron', sans-serif;color:#fff}
+body.loading{overflow: hidden;height:100%}
 h1{text-align: center;margin: 60px 0;color: #fff;}
 .nav_card{
     padding: 15px 10px;
