@@ -1,5 +1,5 @@
 <div class='col-md-4'>
-    <div class='chooseRace card {{personnage.race is defined and personnage.race.id == race.id ? "active":""}}' data-id='{{race.id}}'>
+    <div class='chooseRace card {{personnage.race.id is defined and personnage.race.id == race.id ? "active":""}}' data-id='{{race.id}}'>
         <div class='row'>
             <div class='col-md-4'>
                 <img src="{{asset('img/race_' ~ race.id ~ '.png')}}" class="card-img-top" >

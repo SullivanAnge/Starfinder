@@ -47,6 +47,8 @@ class PersonnageController extends AbstractController
             $personnage->setCaracCHA(10);
             $personnage->setPE(0);
             $personnage->setPV(0);
+            $personnage->setPP(0);
+            $personnage->setPointsCompetence(10);
         }
 
         //-------------------------------Insertion personnage---------------------------------------
@@ -148,7 +150,7 @@ class PersonnageController extends AbstractController
             }
           
         }
-        
+        //dump($personnage);exit;
         return $this->render('personnage/form.html.twig', [
             'classes' => $classes,
             'races' => $races,

@@ -162,6 +162,11 @@ class Personnage
      */
     private $caracCHA;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $points_competence;
+
     
 
     public function __construct()
@@ -525,6 +530,18 @@ class Personnage
     public function setCaracCHA(int $caracCHA): self
     {
         $this->caracCHA = $caracCHA;
+
+        return $this;
+    }
+
+    public function getPointsCompetence(): ?int
+    {
+        return $this->points_competence;
+    }
+
+    public function setPointsCompetence(int $points_competence): self
+    {
+        $this->points_competence = $points_competence;
 
         return $this;
     }

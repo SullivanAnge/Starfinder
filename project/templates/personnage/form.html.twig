@@ -87,13 +87,13 @@
            
                 <label>Race : </label>
                 <button type="button" id='chooseRaceBtn' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#raceModal">
-                    {% if personnage.race is defined  %}
+                    {% if personnage.race.titre is defined  %}
                         {{personnage.race.titre}}
                     {% else %}
                         Choisissez votre race
                     {% endif %}
                 </button>
-                <input type='hidden' id='inputRace' name='race' value='{{personnage.race is defined ? personnage.race.id : "0"}}' />
+                <input type='hidden' id='inputRace' name='race' value='{{personnage.race.id is defined ? personnage.race.id : "0"}}' />
             
             
         </div>
@@ -101,13 +101,13 @@
             
                 <label>Thème : </label>
                 <button type="button" id='chooseThemeBtn' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#themeModal">
-                    {% if personnage.themes is defined  %}
+                    {% if personnage.themes.titre is defined  %}
                         {{personnage.themes.titre}}
                     {% else %}
                         Choisissez votre thème
                     {% endif %}
                 </button>
-                <input type='hidden' id='inputTheme' name='theme' value='{{personnage.themes is defined ? personnage.themes.id : "0"}}' />
+                <input type='hidden' id='inputTheme' name='theme' value='{{personnage.themes.id is defined ? personnage.themes.id : "0"}}' />
             
             
         </div>
@@ -115,13 +115,13 @@
             
                 <label>Classe : </label>
                 <button type="button" id='chooseClasseBtn' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#classeModal">
-                    {% if personnage.classe is defined  %}
+                    {% if personnage.classe.titre is defined  %}
                         {{personnage.classe.titre}}
                     {% else %}
                         Choisissez votre classe
                     {% endif %}
                 </button>
-                <input type='hidden' id='inputClasse' name='classe' value='{{personnage.classe is defined ? personnage.classe.id : "0"}}' />
+                <input type='hidden' id='inputClasse' name='classe' value='{{personnage.classe.id is defined ? personnage.classe.id : "0"}}' />
 
             
             
@@ -158,6 +158,7 @@
         <div class='col-md-12'>
             <div class='bloc_form active' id='BlocValCarac'>
                 <h2 class='display-5'>Valeur de caractéristique </h2>
+                <p>points restant : <span id='points_competence'>{{personnage.getPointsCompetence()}}</span></p>
                 <table class='table'>
                     <tr>
                         <th></th>
@@ -253,8 +254,8 @@
                     </tr>
                     <tr>
                         <th>Total</th>
-                        <td><input type='number' name='pe_total' id='pe_total' value='{{personnage.pe}}' readonly data-race='0' data-classe='{{personnage.classe.pe}}' /></td>
-                        <td><input type='number' name='pv_total' id='pv_total' value='{{personnage.pv}}' readonly data-race='{{personnage.race.pv}}' data-classe='{{personnage.classe.pv}}' /></td>
+                        <td><input type='number' name='pe_total' id='pe_total' value='{{personnage.pe}}' readonly data-race='0' data-classe='{{personnage.classe.pe is defined ? personnage.classe.pe}}' /></td>
+                        <td><input type='number' name='pv_total' id='pv_total' value='{{personnage.pv}}' readonly data-race='{{personnage.race.pv is defined ? personnage.race.pv}}' data-classe='{{personnage.classe.pv is defined ? personnage.classe.pv }}' /></td>
                         <td><input type='number' name='pp_total' id='pp_total' value='0' readonly data-race='0' data-classe='0' /></td>
                     </tr>
                     <tr>

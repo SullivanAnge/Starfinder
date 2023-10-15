@@ -85,15 +85,40 @@ function endLoading(){
   //on débloque le scroll
   $("body").removeClass("loading");
 }
-
-function changeValue(){
-
+function IsIncrease(input){
+    var direction = input.defaultValue < input.value
+    
+    if (direction) return true;
+    else return false;
+}
+function changeValue(input,val){
+  
+  var diff = input.defaultValue - input.value;
+  input.defaultValue = input.value;
+  $("#points_competence").html(val + diff);
 }
 
 
-$(".carac,.jds,.bba").change(function(){
+$(".jds,.bba").change(function(){
   MajPerso();
 })
+$(".carac").change(function(){
+  let val = parseInt($("#points_competence").html());
+  
+  if(val>0){
+    MajPerso();
+    changeValue(this,val);
+  }else if(val<=0 && !IsIncrease(this)){
+    
+
+    MajPerso();
+    changeValue(this,val);
+  }else{
+    var valdef = this.defaultValue;
+    $(this).val(valdef);
+    return false;
+  }
+});
 //selection de la classe
 $(".chooseClasse").click(function(){
   $(".chooseClasse").removeClass("active");
@@ -251,6 +276,10 @@ $(".nav-tabs .nav-item .nav-link").click(function(){
   $("#"+bloc).addClass("active");
 })
 
+
+
 $( document ).ready(function() {
   MajPerso();
+
+  
 });
