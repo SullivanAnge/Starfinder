@@ -92,8 +92,10 @@ function IsIncrease(input){
     else return false;
 }
 function changeValue(input,val){
-  
+  console.log(input.defaultValue);
+  console.log(input.value);
   var diff = input.defaultValue - input.value;
+  console.log(diff);
   input.defaultValue = input.value;
   $("#points_competence").html(val + diff);
 }
@@ -185,6 +187,12 @@ $("#saveRace").click(function(){
     $("#caracINT").val(parseInt($("#caracINT").val())+parseInt(data.int)).attr("data-race",parseInt(data.int));
     $("#caracSAG").val(parseInt($("#caracSAG").val())+parseInt(data.sag)).attr("data-race",parseInt(data.sag));
     $("#caracCHA").val(parseInt($("#caracCHA").val())+parseInt(data.cha)).attr("data-race",parseInt(data.cha));
+    $("#caracFOR").attr("value",$("#caracFOR").val());
+    $("#caracDEX").attr("value",$("#caracDEX").val());
+    $("#caracCON").attr("value",$("#caracCON").val());
+    $("#caracINT").attr("value",$("#caracINT").val());
+    $("#caracSAG").attr("value",$("#caracSAG").val());
+    $("#caracCHA").attr("value",$("#caracCHA").val());
 
     $("#pv_total").attr("data-race",data.pv);
 
@@ -227,7 +235,12 @@ $("#saveTheme").click(function(){
     $("#caracINT").val(parseInt($("#caracINT").val())+parseInt(data.int)).attr("data-theme",parseInt(data.int));
     $("#caracSAG").val(parseInt($("#caracSAG").val())+parseInt(data.sag)).attr("data-theme",parseInt(data.sag));
     $("#caracCHA").val(parseInt($("#caracCHA").val())+parseInt(data.cha)).attr("data-theme",parseInt(data.cha));
-
+    $("#caracFOR").attr("value",$("#caracFOR").val());
+    $("#caracDEX").attr("value",$("#caracDEX").val());
+    $("#caracCON").attr("value",$("#caracCON").val());
+    $("#caracINT").attr("value",$("#caracINT").val());
+    $("#caracSAG").attr("value",$("#caracSAG").val());
+    $("#caracCHA").attr("value",$("#caracCHA").val());
     //modification infos thème
     $("#chooseThemeBtn").text(data.titre);
     $("#inputTheme").val(data.id);
