@@ -55,9 +55,10 @@ class PersonnageController extends AbstractController
         if(isset($_POST["valid_perso"])){
             //on Set les différentes variables
             $personnage->setNom($_POST["nom"]); // set le nom
-            $personnage->setClasse(ClasseController::getById_class($doctrine,$_POST["classe"])); //set la classe
-            $personnage->setRace(RaceController::getById_class($doctrine,$_POST["race"])); //set la race
-            $personnage->setThemes(ThemesController::getById_class($doctrine,$_POST["theme"])); //set le theme
+           
+            $personnage->setClasse(ClasseController::getById_class($doctrine,intval($_POST["classe"]))); //set la classe
+            $personnage->setRace(RaceController::getById_class($doctrine,intval($_POST["race"]))); //set la race
+            $personnage->setThemes(ThemesController::getById_class($doctrine,intval($_POST["theme"]))); //set le theme
 
             $personnage->setCaracFOR($_POST["caracFOR"]); //set la force
             $personnage->setCaracDEX($_POST["caracDEX"]); //set la dex
@@ -165,6 +166,7 @@ class PersonnageController extends AbstractController
     {
         $entityManager = $doctrine->getManager();
         $entityManager->persist($personnage);
+        
         $entityManager->flush();
     }
 

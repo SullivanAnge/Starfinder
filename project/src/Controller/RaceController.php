@@ -51,6 +51,7 @@ class RaceController extends AbstractController
             'sag'=> $races->getBonusSAG(),
             'cha'=> $races->getBonusCHA(),
             'pv'=> $races->getPv(),
+            'id'=> $races->getId()
         ]));
         $response->headers->set('Content-Type', 'application/json');
         return $response;
