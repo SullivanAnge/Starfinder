@@ -282,27 +282,27 @@
                     </tr>
                     <tr>
                         <th>CAE</th>
-                        <td><input type='number' readonly value='10' name='CAE' id='cae' /></td>
+                        <td><input type='number' readonly value='10' name='CAE' id='cae' value='{{personnage.cae is defined ? personnage.cae : 0}}' /></td>
                         <td> = 10 + </td>
-                        <td> <input type='number'  /> </td>
+                        <td> <input type='number'  id='bonus_arm_cae' name='bonus_arm_cae' value='{{personnage.getBonusCae() is defined ? personnage.getBonusCae() : 0}}'/> </td>
                         <td>+</td>
-                        <td> <input type='number'  id='dex_cae' /> </td>
+                        <td> <input type='number'  id='dex_cae' value='0' /> </td>
                         <td>+</td>
                         <td> <input type='number' /> </td>
                     </tr>
                     <tr>
-                        <th>CAC</th>
-                        <td><input type='number' readonly value='10' name='CAC' id='cac' /></td>
+                        <th>CAC </th>
+                        <td><input type='number' readonly value='10' name='CAC' id='cac' value='{{personnage.cac is defined ? personnage.cac : 0}}' /></td>
                         <td> = 10 + </td>
-                        <td> <input type='number' /> </td>
+                        <td> <input type='number' id='bonus_arm_cac' name='bonus_arm_cac' value='{{personnage.getBonusCac() is defined ? personnage.getBonusCac() : 0}}' /> </td>
                         <td>+</td>
-                        <td> <input type='number' id='dex_cac' /> </td>
+                        <td> <input type='number' id='dex_cac' value='0' /> </td>
                         <td>+</td>
                         <td> <input type='number' /> </td>
                     </tr>
                     <tr>
                         <th>CA vs Manoeuvres offensives</th>
-                        <td><input type='number' readonly value='8' /></td>
+                        <td><input type='number' readonly value='8' id='caManoeuvre'/></td>
                         <td> = 8 + </td>
                         <td> CAC </td>
                         <td>  </td>

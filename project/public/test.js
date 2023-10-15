@@ -66,6 +66,10 @@ function MajPerso(){
   $("#bonus_cac").val(parseInt($("#bba_cac").val())+modForce);
   $("#bonus_dist").val(parseInt($("#bba_dist").val())+modForce);
   $("#bonus_lancer").val(parseInt($("#bba_lancer").val())+modForce);
+
+  $("#cae").val(10+parseInt($("#bonus_arm_cae").val())+parseInt($("#dex_cae").val()));
+  $("#cac").val(10+parseInt($("#bonus_arm_cac").val())+parseInt($("#dex_cac").val()));
+  $("#caManoeuvre").val(8+parseInt($("#cac").val()));
 }
 
 function startLoading(){
@@ -287,6 +291,10 @@ $(".nav-tabs .nav-item .nav-link").click(function(){
   var bloc = $(this).attr("data-bloc");
   console.log(bloc);
   $("#"+bloc).addClass("active");
+})
+
+$("#bonus_arm_cae,#bonus_arm_cac").change(function(){
+  MajPerso();
 })
 
 

@@ -37,6 +37,7 @@ class PersonnageController extends AbstractController
 
         if($id){
             $personnage = $doctrine->getRepository(Personnage::class)->find($id);
+            
         }else{
             $personnage = new Personnage();
             $personnage->setCaracFOR(10);
@@ -79,6 +80,8 @@ class PersonnageController extends AbstractController
             $personnage->setPP(0); //set les points de persévérence
             $personnage->setCAE($_POST["CAE"]); //set la classe d'armure énergetique
             $personnage->setCAC($_POST["CAC"]); //set la classe d'armure cinétique
+            $personnage->setBonusCae($_POST["bonus_arm_cae"]); //set le bonus d'armure énergetique 
+            $personnage->setBonusCac($_POST["bonus_arm_cac"]); //set le bonus d'armure cinétique 
             $personnage->setVigueur($_POST["vigueur"]); //set la vigueur
             $personnage->setReflexe($_POST["reflexe"]); //set les reflexes
             $personnage->setVolonte($_POST["volonte"]); //set la volonte

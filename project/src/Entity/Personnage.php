@@ -167,6 +167,16 @@ class Personnage
      */
     private $points_competence;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $bonus_cae;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $bonus_cac;
+
     
 
     public function __construct()
@@ -542,6 +552,30 @@ class Personnage
     public function setPointsCompetence(int $points_competence): self
     {
         $this->points_competence = $points_competence;
+
+        return $this;
+    }
+
+    public function getBonusCae(): ?int
+    {
+        return $this->bonus_cae;
+    }
+
+    public function setBonusCae(?int $bonus_cae): self
+    {
+        $this->bonus_cae = $bonus_cae;
+
+        return $this;
+    }
+
+    public function getBonusCac(): ?int
+    {
+        return $this->bonus_cac;
+    }
+
+    public function setBonusCac(?int $bonus_cac): self
+    {
+        $this->bonus_cac = $bonus_cac;
 
         return $this;
     }
