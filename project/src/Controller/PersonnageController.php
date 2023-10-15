@@ -85,6 +85,10 @@ class PersonnageController extends AbstractController
             $personnage->setVigueur($_POST["vigueur"]); //set la vigueur
             $personnage->setReflexe($_POST["reflexe"]); //set les reflexes
             $personnage->setVolonte($_POST["volonte"]); //set la volonte
+            $personnage->setBonusVigueur($_POST["bonus_vigueur"]); //set le bonus de vigueur
+            $personnage->setBonusReflexe($_POST["bonus_reflexe"]); //set le bonus de reflexes
+            $personnage->setBonusVolonte($_POST["bonus_volonte"]); //set le bonus de volonte
+            $personnage->setBba($_POST["bba"]); //set le bba
             $personnage->setAttCac($_POST["bonus_cac"]); //set bonus attaque au corps à corps
             $personnage->setAttDist($_POST["bonus_dist"]); //set bonus attaque à distance
             $personnage->setAttLancer($_POST["bonus_lancer"]); //set bonus attaque de lancer

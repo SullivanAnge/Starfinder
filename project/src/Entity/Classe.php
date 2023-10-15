@@ -54,6 +54,26 @@ class Classe
      */
     private $personnages;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $bba;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $bonus_vigeur;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $bonus_reflexe;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $bonus_volonte;
+
     public function __construct()
     {
         $this->personnages = new ArrayCollection();
@@ -162,6 +182,54 @@ class Classe
                 $personnage->setClasse(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getBba(): ?int
+    {
+        return $this->bba;
+    }
+
+    public function setBba(int $bba): self
+    {
+        $this->bba = $bba;
+
+        return $this;
+    }
+
+    public function getBonusVigeur(): ?int
+    {
+        return $this->bonus_vigeur;
+    }
+
+    public function setBonusVigeur(int $bonus_vigeur): self
+    {
+        $this->bonus_vigeur = $bonus_vigeur;
+
+        return $this;
+    }
+
+    public function getBonusReflexe(): ?int
+    {
+        return $this->bonus_reflexe;
+    }
+
+    public function setBonusReflexe(int $bonus_reflexe): self
+    {
+        $this->bonus_reflexe = $bonus_reflexe;
+
+        return $this;
+    }
+
+    public function getBonusVolonte(): ?int
+    {
+        return $this->bonus_volonte;
+    }
+
+    public function setBonusVolonte(int $bonus_volonte): self
+    {
+        $this->bonus_volonte = $bonus_volonte;
 
         return $this;
     }

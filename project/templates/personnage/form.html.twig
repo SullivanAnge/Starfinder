@@ -281,10 +281,10 @@
                         <td>Mod Divers</td>
                     </tr>
                     <tr>
-                        <th>CAE</th>
-                        <td><input type='number' readonly value='10' name='CAE' id='cae' value='{{personnage.cae is defined ? personnage.cae : 0}}' /></td>
+                        <th>CAE </th>
+                        <td><input type='number' readonly value='10' name='CAE' id='cae' value='{{personnage.cae | default("0")}}' /></td>
                         <td> = 10 + </td>
-                        <td> <input type='number'  id='bonus_arm_cae' name='bonus_arm_cae' value='{{personnage.getBonusCae() is defined ? personnage.getBonusCae() : 0}}'/> </td>
+                        <td> <input type='number'  id='bonus_arm_cae' name='bonus_arm_cae' value='{{personnage.getBonusCae() | default("0")}}'/> </td>
                         <td>+</td>
                         <td> <input type='number'  id='dex_cae' value='0' /> </td>
                         <td>+</td>
@@ -292,9 +292,9 @@
                     </tr>
                     <tr>
                         <th>CAC </th>
-                        <td><input type='number' readonly value='10' name='CAC' id='cac' value='{{personnage.cac is defined ? personnage.cac : 0}}' /></td>
+                        <td><input type='number' readonly value='10' name='CAC' id='cac' value='{{personnage.cac | default("0")}}' /></td>
                         <td> = 10 + </td>
-                        <td> <input type='number' id='bonus_arm_cac' name='bonus_arm_cac' value='{{personnage.getBonusCac() is defined ? personnage.getBonusCac() : 0}}' /> </td>
+                        <td> <input type='number' id='bonus_arm_cac' name='bonus_arm_cac' value='{{personnage.getBonusCac() | default("0")}}' /> </td>
                         <td>+</td>
                         <td> <input type='number' id='dex_cac' value='0' /> </td>
                         <td>+</td>
@@ -328,7 +328,7 @@
                         <th>Vigueurs (constitution)</th>
                         <td><input type='number' name='vigueur' id='vigueur' readonly /></td>
                         <td >=</td>
-                        <td><input type='number' id='jds_vigueur' class='jds' value='0' /></td>
+                        <td><input type='number' id='jds_vigueur' class='jds' value='{{personnage.getBonusVigueur()| default("0")}}' name='bonus_vigueur'/></td>
                         <td>+</td>
                         <td><input type='number' id='con_vigueur' readonly /></td>
                         <td>+</td>
@@ -338,7 +338,7 @@
                         <th>Réflexe (Dextérité)</th>
                         <td><input type='number' name='reflexe' id='reflexe' readonly /></td>
                         <td >=</td>
-                        <td><input type='number' id='jds_reflexe' class='jds' value='0' /></td>
+                        <td><input type='number' id='jds_reflexe' class='jds' value='{{personnage.getBonusReflexe()| default("0")}}' name='bonus_reflexe' /></td>
                         <td>+</td>
                         <td><input type='number' id='dex_reflexe' readonly /></td>
                         <td>+</td>
@@ -348,7 +348,7 @@
                         <th>Volonté (Sagesse)</th>
                         <td><input type='number' name='volonte' id='volonte' readonly /></td>
                         <td >=</td>
-                        <td><input type='number' id='jds_volonte' class='jds' value='0' /></td>
+                        <td><input type='number' id='jds_volonte' class='jds' value='{{personnage.getBonusVolonte()| default("0")}}' name='bonus_volonte' /></td>
                         <td>+</td>
                         <td><input type='number' id='sag_volonte' readonly /></td>
                         <td>+</td>
@@ -373,7 +373,7 @@
                         <th>Attaque au corps à corps</th>
                         <td><input type='number' name='bonus_cac' id='bonus_cac' readonly /></td>
                         <td >=</td>
-                        <td><input type='number' id='bba_cac' class='bba' value='0' /></td>
+                        <td><input type='number' id='bba_cac' class='bba'  name='bba' value='{{personnage.bba | default("0")}}'/></td>
                         <td>+</td>
                         <td><input type='number' id='for_cac' readonly /></td>
                         <td>+</td>
@@ -383,7 +383,7 @@
                         <th>Attaque à distance</th>
                         <td><input type='number' name='bonus_dist' id='bonus_dist' readonly /></td>
                         <td >=</td>
-                        <td><input type='number' id='bba_dist' class='bba' value='0' /></td>
+                        <td><input type='number' id='bba_dist' class='bba' value='{{personnage.bba | default("0")}}' /></td>
                         <td>+</td>
                         <td><input type='number' id='for_dist' readonly /></td>
                         <td>+</td>
@@ -393,7 +393,7 @@
                         <th>Attaque de lancer</th>
                         <td><input type='number' name='bonus_lancer' id='bonus_lancer' readonly /></td>
                         <td >=</td>
-                        <td><input type='number' id='bba_lancer' class='bba' value='0' /></td>
+                        <td><input type='number' id='bba_lancer' class='bba' value='{{personnage.bba | default("0")}}' /></td>
                         <td>+</td>
                         <td><input type='number' id='for_lancer' readonly /></td>
                         <td>+</td>

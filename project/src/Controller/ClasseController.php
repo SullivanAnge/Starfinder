@@ -43,7 +43,11 @@ class ClasseController extends AbstractController
             'texte' => $classes->getText(),
             'pv'=> $classes->getPv(),
             'pe'=> $classes->getPe(),
-            'id'=> $classes->getId()
+            'id'=> $classes->getId(),
+            'bba'=> $classes->getBba(),
+            'BonusVigeur'=>$classes->getBonusVigeur(),
+            'BonusReflexe'=>$classes->getBonusReflexe(),
+            'BonusVolonte'=>$classes->getBonusVolonte(),
         ]));
         $response->headers->set('Content-Type', 'application/json');
         return $response;
@@ -80,6 +84,10 @@ class ClasseController extends AbstractController
             ->add('pv')
             ->add('pe')
             ->add('competence_niveau')
+            ->add('bba')
+            ->add('bonus_vigeur')
+            ->add('bonus_reflexe')
+            ->add('bonus_volonte')
             ->add('save', SubmitType::class, ['label' => 'Valider'])
             ->getForm();
         

@@ -60,11 +60,11 @@ function MajPerso(){
   $("#volonte").val(parseInt($("#jds_volonte").val())+modSag);
 
   $("#for_cac").val(modForce);
-  $("#for_dist").val(modForce);
+  $("#for_dist").val(modDex);
   $("#for_lancer").val(modForce);
 
   $("#bonus_cac").val(parseInt($("#bba_cac").val())+modForce);
-  $("#bonus_dist").val(parseInt($("#bba_dist").val())+modForce);
+  $("#bonus_dist").val(parseInt($("#bba_dist").val())+modDex);
   $("#bonus_lancer").val(parseInt($("#bba_lancer").val())+modForce);
 
   $("#cae").val(10+parseInt($("#bonus_arm_cae").val())+parseInt($("#dex_cae").val()));
@@ -149,10 +149,15 @@ $("#saveClasse").click(function(){
         //ajout nouvelles valeurs
         $("#pe_total").attr("data-classe",data.pe);
         $("#pv_total").attr("data-classe",data.pv);
+        $("#jds_vigueur").val(data.BonusVigeur);
+        $("#jds_reflexe").val(data.BonusReflexe);
+        $("#jds_volonte").val(data.BonusVolonte);
+        $("#bba_cac,#bba_dist,#bba_lancer").val(data.bba);
 
         //modification infos classe
         $("#chooseClasseBtn").text(data.titre);
         $("#inputClasse").val(data.id);
+        
 
         MajPerso();
         endLoading();
