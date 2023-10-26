@@ -16,6 +16,10 @@ framework:
     #fragments: true
     php_errors:
         log: true
+    cache:
+        pools:
+            cache.router: 
+                adapter: cache.adapter.apcu 
 
 when@test:
     framework:
