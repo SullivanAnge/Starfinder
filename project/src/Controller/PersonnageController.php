@@ -168,7 +168,18 @@ class PersonnageController extends AbstractController
             'persoCompetences'=>$persoCompetences
         ]);
     }
+    /**
+    * @Route("/deletePersonnage/{id}", name="app_delete_personnage")
+    */
+    public function delete_personnage(Request $request, ManagerRegistry $doctrine,$id){
+        $personnage = $doctrine->getRepository(Personnage::class)->find($id);
+        return $this->render('personnage/delete.html.twig', [
+            
+            'personnage'=>$personnage,
+            
+        ]);
 
+    }
     public function create_personnage(ManagerRegistry $doctrine,Personnage $personnage)
     {
         $entityManager = $doctrine->getManager();

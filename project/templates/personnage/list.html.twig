@@ -9,25 +9,7 @@
         </div>
     </div>
 
-    <!--<table class='table'>
-    <tr><th>Nom</th><th>Race</th><th>Thème</th><th>Classe</th><th>FOR</th><th>DEX</th><th>CON</th><th>INT</th><th>SAG</th><th>CHA</th>
-    {% for personnage in personnages %}
-        <tr>
-
-            <td>{{personnage.nom}}</td>
-            <td>{{personnage.race.titre}}</td>
-            <td>{{personnage.themes.titre}}</td>
-            <td>{{personnage.classe.titre}}</td>
-            <td>{{personnage.caracFOR}}</td>
-            <td>{{personnage.caracDEX}}</td>
-            <td>{{personnage.caracCON}}</td>
-            <td>{{personnage.caracINT}}</td>
-            <td>{{personnage.caracSAG}}</td>
-            <td>{{personnage.caracCHA}}</td>
-        </tr>
-
-    {% endfor %}
-    </table>-->
+   
 
 
     <div class='row my-4 justify-content-around'>
@@ -35,33 +17,41 @@
             <div class='col-md-2  card p-0'>
                 <div class="card-header">
                     <h4 class="card-title">{{personnage.nom}}</h4>
+                    <div>{{personnage.race.titre}} / {{personnage.themes.titre}} / {{personnage.classe.titre}}</div>
                 </div>
                 <div class="card-body">
                     
-                    <p class="card-text">
-                        <div><b>Race : </b> {{personnage.race.titre}}</div>
-                        <div><b>Thème : </b>{{personnage.themes.titre}}</div>
-                        <div><b>Classe : </b>{{personnage.classe.titre}}</div>
-                    </p>
+                    
 
-                    <p class="card-text">
-                        <div><b>PE : </b> {{personnage.pe}}</div>
-                        <div><b>PV : </b>{{personnage.pv}}</div>
+                    <div class="card-text row">
+                        <div class='col-md-6'><b>PE : </b> {{personnage.pe}}</div>
+                        <div class='col-md-6'><b>PV : </b>{{personnage.pv}}</div>
                         
-                    </p>
+                    </div>
+                    <hr/>
 
-                    <p class="card-text">
-                        <div><b>FOR : </b> {{personnage.caracFOR}}</div>
-                        <div><b>DEX : </b>{{personnage.caracDEX}}</div>
-                        <div><b>CON : </b>{{personnage.caracCON}}</div>
-                        <div><b>INT : </b>{{personnage.caracINT}}</div>
-                        <div><b>SAG : </b>{{personnage.caracSAG}}</div>
-                        <div><b>CHA : </b>{{personnage.caracCHA}}</div>
-                    </p>
+                    <div class="card-text row">
+                        <div class='col-md-6'>
+                            <div><b>FOR : </b>{{personnage.caracFOR}}</div>
+                            <div><b>DEX : </b>{{personnage.caracDEX}}</div>
+                            <div><b>CON : </b>{{personnage.caracCON}}</div>
+                            <div><b>INT : </b>{{personnage.caracINT}}</div>
+                            <div><b>SAG : </b>{{personnage.caracSAG}}</div>
+                            <div><b>CHA : </b>{{personnage.caracCHA}}</div>
+                        </div>
+                        <div class='col-md-6'>
+                            <div><b>CAE : </b>{{personnage.cae}}</div>
+                            <div><b>CAC : </b>{{personnage.cac}}</div>
+                        </div>
+                        
+                    </div>
+
+                    
 
                 </div>
                 <div class="card-footer text-center">
-                    <a href="{{path('app_form_personnage',{id:personnage.id})}}" class="btn btn-primary">Voir la fiche</a>
+                    <a href="{{path('app_form_personnage',{id:personnage.id})}}" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    <a href="{{path('app_delete_personnage',{id:personnage.id})}}" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
                 </div>
             </div>
         {% endfor %}
