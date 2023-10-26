@@ -1,0 +1,24 @@
+<div class='bloc_form' id='BlocSantePers'>
+                <h2 class='display-5'>Santé et persévérance </h2>
+                <table class='table'>
+                    <tr>
+                        <th></th>
+                        <th>Points d'endurance</th>
+                        <th>Points de vie</th>
+                        <th>Points de persévérence</th>
+                    </tr>
+                    <tr>
+                        <th>Total</th>
+                        <td><input type='number' name='pe_total' id='pe_total' value='{{personnage.pe}}' readonly data-race='0' data-classe='{{personnage.classe.pe is defined ? personnage.classe.pe}}' /></td>
+                        <td><input type='number' name='pv_total' id='pv_total' value='{{personnage.pv}}' readonly data-race='{{personnage.race.pv is defined ? personnage.race.pv}}' data-classe='{{personnage.classe.pv is defined ? personnage.classe.pv }}' /></td>
+                        <td><input type='number' name='pp_total' id='pp_total' value='0' readonly data-race='0' data-classe='0' /></td>
+                    </tr>
+                    <tr>
+                        <th>Actuel</th>
+                        <td><input type='number' name='pe_actuel' value='' /></td>
+                        <td><input type='number' name='pv_actuel' value='' /></td>
+                        <td><input type='number' name='pp_actuel' value='' /></td>
+                    </tr>
+                </table>
+
+            </div>
