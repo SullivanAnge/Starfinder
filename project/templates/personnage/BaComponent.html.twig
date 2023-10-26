@@ -1,0 +1,45 @@
+<div class='bloc_form' id='BlocBa'> 
+                <h2 class='display-5'>Bonus d'attaque</h2>
+                <table class='table'>
+                    <tr>
+                        <th></th>
+                        <th>Total</th>
+                        <th class='mini'></th>
+                        <th>BBA</th>
+                        <th class='mini'></th>
+                        <th>Mod for</th>
+                        <th class='mini'></th>
+                        <th>Mod divers</th>
+                    </tr>
+                    <tr>
+                        <th>Attaque au corps à corps</th>
+                        <td><input type='number' name='bonus_cac' id='bonus_cac' readonly /></td>
+                        <td >=</td>
+                        <td><input type='number' id='bba_cac' class='bba'  name='bba' value='{{personnage.bba | default("0")}}'/></td>
+                        <td>+</td>
+                        <td><input type='number' id='for_cac' readonly /></td>
+                        <td>+</td>
+                        <td><input type='number' /></td>
+                    </tr>
+                    <tr>
+                        <th>Attaque à distance</th>
+                        <td><input type='number' name='bonus_dist' id='bonus_dist' readonly /></td>
+                        <td >=</td>
+                        <td><input type='number' id='bba_dist' class='bba' value='{{personnage.bba | default("0")}}' /></td>
+                        <td>+</td>
+                        <td><input type='number' id='for_dist' readonly /></td>
+                        <td>+</td>
+                        <td><input type='number' /></td>
+                    </tr>
+                    <tr>
+                        <th>Attaque de lancer</th>
+                        <td><input type='number' name='bonus_lancer' id='bonus_lancer' readonly /></td>
+                        <td >=</td>
+                        <td><input type='number' id='bba_lancer' class='bba' value='{{personnage.bba | default("0")}}' /></td>
+                        <td>+</td>
+                        <td><input type='number' id='for_lancer' readonly /></td>
+                        <td>+</td>
+                        <td><input type='number' /></td>
+                    </tr>
+                </table>
+            </div>

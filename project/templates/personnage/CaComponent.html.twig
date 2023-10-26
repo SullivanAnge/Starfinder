@@ -1,0 +1,44 @@
+<div class='bloc_form' id='BlocCa'>
+                <h2 class='display-5'>Classe d'armure</h2>
+                <table class='table'>
+                    <tr>
+                        <td></td>
+                        <td>Total</td>
+                        <td class='mini_md'></td>
+                        <td>Bonus d'armure</td>
+                        <td class='mini'></td>
+                        <td>Mod Dex</td>
+                        <td class='mini'></td>
+                        <td>Mod Divers</td>
+                    </tr>
+                    <tr>
+                        <th>CAE </th>
+                        <td><input type='number' readonly value='10' name='CAE' id='cae' value='{{personnage.cae | default("0")}}' /></td>
+                        <td> = 10 + </td>
+                        <td> <input type='number'  id='bonus_arm_cae' name='bonus_arm_cae' value='{{personnage.getBonusCae() | default("0")}}'/> </td>
+                        <td>+</td>
+                        <td> <input type='number'  id='dex_cae' value='0' /> </td>
+                        <td>+</td>
+                        <td> <input type='number' /> </td>
+                    </tr>
+                    <tr>
+                        <th>CAC </th>
+                        <td><input type='number' readonly value='10' name='CAC' id='cac' value='{{personnage.cac | default("0")}}' /></td>
+                        <td> = 10 + </td>
+                        <td> <input type='number' id='bonus_arm_cac' name='bonus_arm_cac' value='{{personnage.getBonusCac() | default("0")}}' /> </td>
+                        <td>+</td>
+                        <td> <input type='number' id='dex_cac' value='0' /> </td>
+                        <td>+</td>
+                        <td> <input type='number' /> </td>
+                    </tr>
+                    <tr>
+                        <th>CA vs Manoeuvres offensives</th>
+                        <td><input type='number' readonly value='8' id='caManoeuvre'/></td>
+                        <td> = 8 + </td>
+                        <td> CAC </td>
+                        <td>  </td>
+                        <td>  </td>
+                    </tr>
+                </table>
+
+            </div>

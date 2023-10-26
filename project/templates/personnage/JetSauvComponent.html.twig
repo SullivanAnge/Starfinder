@@ -1,0 +1,45 @@
+<div class='bloc_form' id='BlocJetSauv'>
+                <h2 class='display-5'>Jet de sauvegarde</h2>
+                <table class='table'>
+                    <tr>
+                        <th></th>
+                        <th>Total</th>
+                        <th class='mini'></th>
+                        <th>JDS de base</th>
+                        <th class='mini'></th>
+                        <th>Mod de carac</th>
+                        <th class='mini'></th>
+                        <th>Mod divers</th>
+                    </tr>
+                    <tr>
+                        <th>Vigueurs (constitution)</th>
+                        <td><input type='number' name='vigueur' id='vigueur' readonly /></td>
+                        <td >=</td>
+                        <td><input type='number' id='jds_vigueur' class='jds' value='{{personnage.getBonusVigueur()| default("0")}}' name='bonus_vigueur'/></td>
+                        <td>+</td>
+                        <td><input type='number' id='con_vigueur' readonly /></td>
+                        <td>+</td>
+                        <td><input type='number' /></td>
+                    </tr>
+                    <tr>
+                        <th>Réflexe (Dextérité)</th>
+                        <td><input type='number' name='reflexe' id='reflexe' readonly /></td>
+                        <td >=</td>
+                        <td><input type='number' id='jds_reflexe' class='jds' value='{{personnage.getBonusReflexe()| default("0")}}' name='bonus_reflexe' /></td>
+                        <td>+</td>
+                        <td><input type='number' id='dex_reflexe' readonly /></td>
+                        <td>+</td>
+                        <td><input type='number' /></td>
+                    </tr>
+                    <tr>
+                        <th>Volonté (Sagesse)</th>
+                        <td><input type='number' name='volonte' id='volonte' readonly /></td>
+                        <td >=</td>
+                        <td><input type='number' id='jds_volonte' class='jds' value='{{personnage.getBonusVolonte()| default("0")}}' name='bonus_volonte' /></td>
+                        <td>+</td>
+                        <td><input type='number' id='sag_volonte' readonly /></td>
+                        <td>+</td>
+                        <td><input type='number' /></td>
+                    </tr>
+                </table>
+            </div>

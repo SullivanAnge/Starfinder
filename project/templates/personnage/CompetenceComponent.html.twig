@@ -1,0 +1,31 @@
+<div class='bloc_form' id='BlocCompetences'>
+                <h2 class='display-5'>Compétences </h2>
+                <table class='table'>
+                    <tr>
+                        <th></th>
+                        <th>Total</th>
+                        <th class='mini'></th>
+                        <th>Rangs</td>
+                        <th class='mini'></th>
+                        <th>Bonus de classe</th>
+                        <th class='mini'></th>
+                        <th>Mod de carac</th>
+                        <th class='mini'></th>
+                        <th>Mod divers</th>
+                    </tr>
+                    {% for competence in competences %}
+                    <tr class='line_competence'>
+                        <td><input type='checkbox' class='check_competence' name='competence[{{competence.id}}][classe]' {{persoCompetences[competence.id] is defined and persoCompetences[competence.id].CompClasse==1 ? "checked":"" }} /> {{competence.titre}} ({{competence.caracteristique}})</td>
+                        <td><input type='number' name='' class='total_carac' readonly /></td>
+                        <td>=</td>
+                        <td><input type='number'  min='0' name='competence[{{competence.id}}][rang]' class='rang' value='{{persoCompetences[competence.id] is defined ? persoCompetences[competence.id].rang : "0"}}' /></td>
+                        <td>+</td>
+                        <td><input type='number' min='0'  name='competence[{{competence.id}}][bonus_classe]' class='bonus_class' value='{{persoCompetences[competence.id] is defined ? persoCompetences[competence.id].bonusClasse : "0"}}' readonly/></td>
+                        <td>+</td>
+                        <td><input type='number'  class='mod_carac' name='competence[{{competence.id}}][mod_carac]' data-carac='{{competence.caracteristique}}' value='{{persoCompetences[competence.id] is defined ? persoCompetences[competence.id].modCarac : "0"}}'/></td>
+                        <td>+</td>
+                        <td><input type='number'  name='competence[{{competence.id}}][mod_divers]' value='{{persoCompetences[competence.id] is defined ? persoCompetences[competence.id].modDivers : "0"}}'/></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
