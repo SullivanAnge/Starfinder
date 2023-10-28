@@ -96,12 +96,45 @@ function IsIncrease(input){
     else return false;
 }
 function changeValue(input,val){
-  console.log(input.defaultValue);
-  console.log(input.value);
+  
   var diff = input.defaultValue - input.value;
-  console.log(diff);
+  
   input.defaultValue = input.value;
   $("#points_competence").html(val + diff);
+}
+
+function generateArme(arme,i){
+  var ligne = "";
+  if(i%2){
+    ligne += "<div class='arme row impair'>";
+  }else{
+    ligne += "<div class='arme row'>";
+  }
+  
+  ligne+="<div class='col-md-2'>"+arme.Titre+"</div>";
+  ligne+="<div class='col-md-1 text-center'>"+arme.niveau+"</div>";
+  ligne+="<div class='col-md-1 text-center'>"+arme.degats+" "+arme.TypeDegat+"</div>";
+  ligne+="<div class='col-md-1 text-center'>"+(arme.portee ? arme.portee+"m" : "")+"</div>";
+  ligne+="<div class='col-md-1 text-center'>"+arme.critque+"</div>";
+  ligne+="<div class='col-md-2'>"+arme.special+"</div>";
+  ligne+="<div class='col-md-1 text-center'>"+(arme.capacite ? arme.capacite : "")+"</div>";
+  ligne+="<div class='col-md-1 text-center'>"+(arme.consomation ? arme.consomation : "")+"</div>";
+  ligne+="<div class='col-md-1 text-center'>"+(arme.volume ? arme.volume : "")+"</div>";
+  ligne+="<div class='col-md-1 text-center'>"+(arme.prix ? arme.prix : "")+"</div>";
+
+  return ligne;
+}
+
+function generateMainArme(main){
+  var ligne = "";
+  ligne += "<div class='row lignecat'><div class='col-md-12'>Armes à "+main+" main"+(parseInt(main)>1 ? "s":"")+" </div></div>";
+  return ligne;
+}
+
+function generateCategorie(categorie){
+  var ligne = "";
+  ligne += "<div class='row lignecat'><div class='col-md-12'>"+categorie+"</div></div>";
+  return ligne;
 }
 
 
@@ -294,13 +327,41 @@ $(".nav-tabs .nav-item .nav-link").click(function(){
   
   $('.bloc_infos .bloc_form').removeClass("active");
   var bloc = $(this).attr("data-bloc");
-  console.log(bloc);
+  
   $("#"+bloc).addClass("active");
 })
 
 $("#bonus_arm_cae,#bonus_arm_cac").change(function(){
   MajPerso();
 })
+//filtrage type arme
+$(".filtretype").click(function(){
+  var id = $(this).attr("data-id");
+  console.log(id);
+  $.ajax({
+    url: "/arme/getArmeBytype/"+id,
+    
+  }).done(function(data){
+    $("#bodyArme").html("");
+    for (const key in data) {
+      let categorie = data[key];
+      $("#bodyArme").append(generateMainArme(key));
+      for (const skey in categorie) {
+        let armes = categorie[skey];
+        $("#bodyArme").append(generateCategorie(skey));
+          var i = 0;
+          armes.forEach(arme => {  
+            $("#bodyArme").append(generateArme(arme,i));
+            i++;
+          });
+      }
+    }  
+  });
+})
+
+$("#bodyArme").on("click",".arme",function(){
+  $(this).toggleClass("select");
+});
 
 
 

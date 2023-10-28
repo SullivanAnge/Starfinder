@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ArmeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ArmeRepository::class)
@@ -14,77 +15,92 @@ class Arme
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"armes"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"armes"})
      */
     private $Titre;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups({"armes"})
      */
     private $prix;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"armes"})
      */
     private $degats;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"armes"})
      */
     private $TypeDegat;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=2, nullable=true)
+     * @Groups({"armes"})
      */
     private $portee;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"armes"})
      */
     private $critque;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups({"armes"})
      */
     private $capacite;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups({"armes"})
      */
     private $consomation;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups({"armes"})
      */
     private $volume;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"armes"})
      */
     private $special;
 
     /**
      * @ORM\ManyToOne(targetEntity=TypeArme::class, inversedBy="armes")
      * @ORM\JoinColumn(nullable=false)
+     * 
      */
     private $type;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups({"armes"})
      */
     private $main;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"armes"})
      */
     private $categorie;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups({"armes"})
      */
     private $niveau;
 
@@ -203,7 +219,7 @@ class Arme
 
     public function getspecial(): ?string
     {
-        return $this->Sspecial;
+        return $this->special;
     }
 
     public function setspecial(?string $special): self

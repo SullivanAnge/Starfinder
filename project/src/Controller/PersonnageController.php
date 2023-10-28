@@ -2,6 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Classe;
+use App\Entity\Competence;
+use App\Entity\Race;
+use App\Entity\Themes;
+use App\Entity\TypeArme;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -140,10 +145,12 @@ class PersonnageController extends AbstractController
         //-------------fin insertion personnage-------------------------------------------------
         
 
-        $classes = ClasseController::getAll($doctrine);
-        $races = RaceController::getAll($doctrine);
-        $themes = ThemesController::getAll($doctrine);
-        $competences = CompetenceController::getAll($doctrine);
+        $classes = $doctrine->getRepository(Classe::class)->findAll();
+        $races = $doctrine->getRepository(Race::class)->findAll();
+        $themes = $doctrine->getRepository(Themes::class)->findAll();
+        $competences = $doctrine->getRepository(Competence::class)->findAll();
+        $typeArme = $doctrine->getRepository(TypeArme::class)->findAll();
+        
         $persoCompetences = array();
         if($id){
             $persoCompetences_tmp = $doctrine->getRepository(PersoCompetence::class)->findBy([
@@ -165,7 +172,8 @@ class PersonnageController extends AbstractController
             'themes' => $themes,
             'personnage'=>$personnage,
             'competences'=>$competences,
-            'persoCompetences'=>$persoCompetences
+            'persoCompetences'=>$persoCompetences,
+            'typeArme' => $typeArme,
         ]);
     }
     /**

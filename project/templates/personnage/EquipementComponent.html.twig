@@ -1,0 +1,48 @@
+<div class='bloc_form' id='BlocEquip'> 
+    <h2 class='display-5'>Équipement</h2>
+
+    <h4>Armes 
+        <button type="button" id='chooseArmeBtn' class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#armeModal">
+            <i class="fa-solid fa-plus"></i>
+        </button>
+    </h4>
+    
+</div>
+
+<div class="modal fade" id="armeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xxl">
+    <div class="modal-content">
+      
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Armes</h1>
+      
+      <div class="">
+        <div class='FiltreTypeArme'>
+           {% for type in typeArme %}
+                <span class='btn btn-primary filtretype' data-id='{{type.id}}'>{{ type.Titre}}</span>
+           {% endfor %}
+        </div>
+        <div id='contentArme' class=''>
+          <div id='headArme' class='row'>
+            <div class="col-md-2">Titre</div>
+            <div class="col-md-1 text-center">niveau</div>
+            <div class="col-md-1 text-center">Dégats</div>
+            <div class="col-md-1 text-center">Portée</div>
+            <div class="col-md-1 text-center">Critique</div>
+            <div class="col-md-2">Spécial</div>
+            <div class="col-md-1 text-center">Capacite</div>
+            <div class="col-md-1 text-center">Consomation</div>
+            <div class="col-md-1 text-center">Volume</div>
+            <div class="col-md-1 text-center">Prix</div>
+          </div>
+          <div id='bodyArme'>
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id='saveRace'>Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

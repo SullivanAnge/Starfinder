@@ -39,6 +39,11 @@ class TypeArmeRepository extends ServiceEntityRepository
         }
     }
 
+    /*public function findAll(): array
+    {
+        return $this->getEntityManager()->getRepository(TypeArme::class)->findAll();
+    }*/
+
 //    /**
 //     * @return TypeArme[] Returns an array of TypeArme objects
 //     */

@@ -39,6 +39,18 @@ class ArmeRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByTypeArme($typeArme): array
+   {
+       return $this->createQueryBuilder('a')
+           ->andWhere('a.type = :val')
+           ->setParameter('val', $typeArme->getId())
+           ->orderBy('a.id', 'ASC')
+           
+           ->getQuery()
+            ->getResult()
+       ;
+    }
+
 //    /**
 //     * @return Arme[] Returns an array of Arme objects
 //     */

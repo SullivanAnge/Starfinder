@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Arme{% endblock %}
+
+{% block body %}
+    <h1>Arme</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ arme.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ arme.Titre }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ arme.prix }}</td>
+            </tr>
+            <tr>
+                <th>Degats</th>
+                <td>{{ arme.degats }}</td>
+            </tr>
+            <tr>
+                <th>TypeDegat</th>
+                <td>{{ arme.TypeDegat }}</td>
+            </tr>
+            <tr>
+                <th>Portee</th>
+                <td>{{ arme.portee }}</td>
+            </tr>
+            <tr>
+                <th>Critque</th>
+                <td>{{ arme.critque }}</td>
+            </tr>
+            <tr>
+                <th>Capacite</th>
+                <td>{{ arme.capacite }}</td>
+            </tr>
+            <tr>
+                <th>Consomation</th>
+                <td>{{ arme.consomation }}</td>
+            </tr>
+            <tr>
+                <th>Volume</th>
+                <td>{{ arme.volume }}</td>
+            </tr>
+            <tr>
+                <th>Special</th>
+                <td>{{ arme.special }}</td>
+            </tr>
+            <tr>
+                <th>Main</th>
+                <td>{{ arme.main }}</td>
+            </tr>
+            <tr>
+                <th>Categorie</th>
+                <td>{{ arme.categorie }}</td>
+            </tr>
+            <tr>
+                <th>Niveau</th>
+                <td>{{ arme.niveau }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_arme_index') }}">back to list</a>
+
+    <a href="{{ path('app_arme_edit', {'id': arme.id}) }}">edit</a>
+
+    {{ include('arme/_delete_form.html.twig') }}
+{% endblock %}

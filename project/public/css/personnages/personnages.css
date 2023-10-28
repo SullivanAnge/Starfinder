@@ -17,6 +17,18 @@ td.mini_md{width:65px}
 .chooseTheme.active,.chooseRace.active,.chooseClasse.active{background:#5accf5;color:#fff}
 .chooseRace .card-title{}
 
+#contentArme{padding:5px 10px;}
+#contentArme .row{padding: 8px 0;margin:0;font-size: 12px;}
+#contentArme .row.lignecat{font-weight: bold;background:#53347a;font-weight: 14px;border-bottom: solid 2px #fff;}
+#bodyArme .arme:hover,#bodyArme .arme.impair:hover,#bodyArme .arme.select,#bodyArme .arme.impair.select{cursor: pointer;background:#5accf5;color:#000}
+#contentArme .row.impair{background:#fff;color:#000;}
+.FiltreTypeArme{padding:0 10px}
+.FiltreTypeArme .filtretype{font-size: 12px;}
+.modal-xxl{max-width:1700px}
+#bodyArme{padding:0 10px;max-height: 400px;
+  overflow-y: scroll;}
+
+
 .lds-roller {
     display: inline-block;
     position: absolute;

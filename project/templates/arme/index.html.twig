@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Arme index{% endblock %}
+
+{% block body %}
+    <h1>Arme index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Prix</th>
+                <th>Degats</th>
+                <th>TypeDegat</th>
+                <th>Portee</th>
+                <th>Critque</th>
+                <th>Capacite</th>
+                <th>Consomation</th>
+                <th>Volume</th>
+                <th>Special</th>
+                <th>Main</th>
+                <th>Categorie</th>
+                <th>Niveau</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for arme in armes %}
+            <tr>
+                <td>{{ arme.id }}</td>
+                <td>{{ arme.Titre }}</td>
+                <td>{{ arme.prix }}</td>
+                <td>{{ arme.degats }}</td>
+                <td>{{ arme.TypeDegat }}</td>
+                <td>{{ arme.portee }}</td>
+                <td>{{ arme.critque }}</td>
+                <td>{{ arme.capacite }}</td>
+                <td>{{ arme.consomation }}</td>
+                <td>{{ arme.volume }}</td>
+                <td>{{ arme.special }}</td>
+                <td>{{ arme.main }}</td>
+                <td>{{ arme.categorie }}</td>
+                <td>{{ arme.niveau }}</td>
+                <td>
+                    <a href="{{ path('app_arme_show', {'id': arme.id}) }}">show</a>
+                    <a href="{{ path('app_arme_edit', {'id': arme.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="15">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_arme_new') }}">Create new</a>
+{% endblock %}
