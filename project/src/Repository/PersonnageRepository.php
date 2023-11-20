@@ -39,6 +39,18 @@ class PersonnageRepository extends ServiceEntityRepository
         }
     }
 
+    public function delete(Personnage $entity,PersoCompetenceRepository $persoCompetenceRepository): void
+    {
+        $persoCompetences = $persoCompetenceRepository->findBy(["personnage"=> $entity->getId()]);
+        foreach ($persoCompetences as $perso) {
+            $persoCompetenceRepository->remove($perso);       
+        }
+        $this->remove($entity);
+        $persoCompetenceRepository->getEntityManager()->flush();
+
+
+    }
+
 //    /**
 //     * @return Personnage[] Returns an array of Personnage objects
 //     */

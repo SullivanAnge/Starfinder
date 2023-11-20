@@ -138,6 +138,7 @@ function generateCategorie(categorie){
 }
 
 
+
 $(".jds,.bba").change(function(){
   MajPerso();
 })
