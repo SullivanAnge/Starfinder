@@ -2,6 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Classe;
+use App\Entity\Competence;
+use App\Entity\Race;
+use App\Entity\Themes;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,10 +16,7 @@ use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 use App\Entity\Personnage;
 use App\Entity\PersoCompetence;
-use App\Controller\ClasseController;
-use App\Controller\RaceController;
-use App\Controller\ThemesController;
-use App\Controller\CompetenceController;
+
 
 class PersonnageController extends AbstractController
 {
@@ -57,9 +58,12 @@ class PersonnageController extends AbstractController
             //on Set les différentes variables
             $personnage->setNom($_POST["nom"]); // set le nom
            
-            $personnage->setClasse(ClasseController::getById_class($doctrine,intval($_POST["classe"]))); //set la classe
-            $personnage->setRace(RaceController::getById_class($doctrine,intval($_POST["race"]))); //set la race
-            $personnage->setThemes(ThemesController::getById_class($doctrine,intval($_POST["theme"]))); //set le theme
+            
+            $personnage->setClasse($doctrine->getRepository(Classe::class)->find(intval($_POST["classe"]))); //set la classe
+            
+            $personnage->setRace($doctrine->getRepository(Race::class)->find(intval($_POST["race"]))); //set la race
+            
+            $personnage->setThemes($doctrine->getRepository(Themes::class)->find(intval($_POST["theme"]))); //set le theme
 
             $personnage->setCaracFOR($_POST["caracFOR"]); //set la force
             $personnage->setCaracDEX($_POST["caracDEX"]); //set la dex
@@ -99,7 +103,7 @@ class PersonnageController extends AbstractController
             //on set les valeurs de compétence du personnage
             foreach($_POST["competence"] as $key=>$competence){
                 
-                $competence_entity = CompetenceController::getById($doctrine,$key); //on recupère l'instance de la compétence
+                $competence_entity = $doctrine->getRepository(Competence::class)->find($key); //on recupère l'instance de la compétence
                 //si personnage déja existant, on récupère les valeurs de compétence renseignées
                 if($id){
                     $persoCompetence = $doctrine->getRepository(PersoCompetence::class)->findOneBy([
@@ -140,10 +144,10 @@ class PersonnageController extends AbstractController
         //-------------fin insertion personnage-------------------------------------------------
         
 
-        $classes = ClasseController::getAll($doctrine);
-        $races = RaceController::getAll($doctrine);
-        $themes = ThemesController::getAll($doctrine);
-        $competences = CompetenceController::getAll($doctrine);
+        $classes = $doctrine->getRepository(Classe::class)->findAll();
+        $races = $doctrine->getRepository(Race::class)->findAll();;
+        $themes = $doctrine->getRepository(Themes::class)->findAll();
+        $competences = $doctrine->getRepository(Competence::class)->findAll();
         $persoCompetences = array();
         if($id){
             $persoCompetences_tmp = $doctrine->getRepository(PersoCompetence::class)->findBy([
