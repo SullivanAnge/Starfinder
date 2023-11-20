@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ArmePersonnage index{% endblock %}
+
+{% block body %}
+    <h1>ArmePersonnage index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for arme_personnage in arme_personnages %}
+            <tr>
+                <td>{{ arme_personnage.id }}</td>
+                <td>
+                    <a href="{{ path('app_arme_personnage_show', {'id': arme_personnage.id}) }}">show</a>
+                    <a href="{{ path('app_arme_personnage_edit', {'id': arme_personnage.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_arme_personnage_new') }}">Create new</a>
+{% endblock %}

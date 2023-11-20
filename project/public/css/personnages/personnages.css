@@ -25,8 +25,11 @@ td.mini_md{width:65px}
 .FiltreTypeArme{padding:0 10px}
 .FiltreTypeArme .filtretype{font-size: 12px;}
 .modal-xxl{max-width:1700px}
-#bodyArme{padding:0 10px;max-height: 400px;
-  overflow-y: scroll;}
+#bodyArme{padding:0 10px;max-height: 400px;overflow-y: scroll;}
+
+#equipeArme .row{border-bottom: solid 1px #fff;    padding: 10px 0;}
+#headEquipeArme{font-weight: bold;}
+#equipeArme .row .deleteArme:hover{cursor:pointer;color:red}
 
 
 .lds-roller {

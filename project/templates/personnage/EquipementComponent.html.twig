@@ -6,6 +6,41 @@
             <i class="fa-solid fa-plus"></i>
         </button>
     </h4>
+
+    <div id='equipeArme'>
+      <div id='headEquipeArme' class='row'>
+            <div class="col-md-2">Titre</div>
+            <div class="col-md-1 text-center">Dégats</div>
+            <div class="col-md-1 text-center">Portée</div>
+            <div class="col-md-1 text-center">Critique</div>
+            <div class="col-md-2">Spécial</div>
+            <div class="col-md-1 text-center">Capacite</div>
+            <div class="col-md-1 text-center">Consomation</div>
+            <div class="col-md-1 text-center">Volume</div>
+            <div class="col-md-1 text-center">Qty</div>
+            
+            
+      </div>
+      <div class='bodyEquipArme'>
+      {% for arme in ArmePersonnage %}
+        <div class='row'>
+            <div class="col-md-2">{{arme.arme.Titre}}</div>
+            
+            <div class="col-md-1 text-center">{{arme.arme.degats}} {{arme.arme.TypeDegat}}</div>
+            <div class="col-md-1 text-center">{{arme.arme.portee}}</div>
+            <div class="col-md-1 text-center">{{arme.arme.critque}}</div>
+            <div class="col-md-2">{{arme.arme.special}}</div>
+            <div class="col-md-1 text-center">{{arme.arme.capacite}}</div>
+            <div class="col-md-1 text-center">{{arme.arme.consomation}}</div>
+            <div class="col-md-1 text-center">{{arme.arme.volume}}</div>
+            <div class="col-md-1 text-center"><input type='number' class='change_qty' data-id='{{arme.id}}' value='{{arme.qty}}' /></div>
+            <div class="col-md-1 text-center"><span class='deleteArme' data-id='{{arme.id}}'><i class="fa-regular fa-circle-xmark"></i></span></div>
+            
+          
+        </div>
+      {% endfor %}
+      </div>
+    </div>
     
 </div>
 
@@ -21,7 +56,7 @@
                 <span class='btn btn-primary filtretype' data-id='{{type.id}}'>{{ type.Titre}}</span>
            {% endfor %}
         </div>
-        <div id='contentArme' class=''>
+        <div id='contentArme' class='' data-personnage='{{personnage.id| default("")}}'>
           <div id='headArme' class='row'>
             <div class="col-md-2">Titre</div>
             <div class="col-md-1 text-center">niveau</div>
@@ -41,7 +76,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id='saveRace'>Save changes</button>
+        
       </div>
     </div>
   </div>

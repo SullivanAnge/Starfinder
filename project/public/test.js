@@ -106,12 +106,12 @@ function changeValue(input,val){
 function generateArme(arme,i){
   var ligne = "";
   if(i%2){
-    ligne += "<div class='arme row impair'>";
+    ligne += "<div class='arme row impair' data-id='"+arme.id+"'>";
   }else{
-    ligne += "<div class='arme row'>";
+    ligne += "<div class='arme row' data-id='"+arme.id+"'>";
   }
   
-  ligne+="<div class='col-md-2'>"+arme.Titre+"</div>";
+  ligne+="<div class='col-md-2' >"+arme.Titre+"</div>";
   ligne+="<div class='col-md-1 text-center'>"+arme.niveau+"</div>";
   ligne+="<div class='col-md-1 text-center'>"+arme.degats+" "+arme.TypeDegat+"</div>";
   ligne+="<div class='col-md-1 text-center'>"+(arme.portee ? arme.portee+"m" : "")+"</div>";
@@ -359,9 +359,41 @@ $(".filtretype").click(function(){
   });
 })
 
+var arme;
+var personnage;
 $("#bodyArme").on("click",".arme",function(){
   $(this).toggleClass("select");
+  arme = $(this).attr('data-id');
+  personnage = $("#contentArme").attr('data-personnage');
+  console.log(arme);
+  $.ajax({
+    url: "/personnage/"+personnage+"/addArme/"+arme,
+    method: "POST",
+    
+  })
 });
+var element;
+$(".deleteArme").click(function(){
+  var armePersonnage = $(this).attr('data-id');
+  element = $(this).closest(".row");
+  $.ajax({
+    url: "/personnage/deleteArme/"+armePersonnage,
+    
+  }).done(function(){
+    element.remove()
+  })
+});
+
+$(".change_qty").change(function(){
+  var armePersonnage = $(this).attr('data-id');
+  var value = $(this).val();
+  $.ajax({
+    url: "/personnage/updtArmeQty/"+armePersonnage+"/"+value,
+    
+  })
+})
+
+
 
 
 

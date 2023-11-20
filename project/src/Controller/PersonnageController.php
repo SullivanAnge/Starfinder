@@ -2,11 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Arme;
+use App\Entity\ArmePersonnage;
 use App\Entity\Classe;
 use App\Entity\Competence;
 use App\Entity\Race;
 use App\Entity\Themes;
 use App\Entity\TypeArme;
+use App\Repository\ArmePersonnageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -150,6 +153,7 @@ class PersonnageController extends AbstractController
         $themes = $doctrine->getRepository(Themes::class)->findAll();
         $competences = $doctrine->getRepository(Competence::class)->findAll();
         $typeArme = $doctrine->getRepository(TypeArme::class)->findAll();
+        $ArmePersonnage = $doctrine->getRepository(ArmePersonnage::class)->findBy(['personnage' => $personnage]);
         
         $persoCompetences = array();
         if($id){
@@ -174,6 +178,7 @@ class PersonnageController extends AbstractController
             'competences'=>$competences,
             'persoCompetences'=>$persoCompetences,
             'typeArme' => $typeArme,
+            'ArmePersonnage' => $ArmePersonnage
         ]);
     }
     /**
@@ -188,6 +193,42 @@ class PersonnageController extends AbstractController
         ]);
 
     }
+
+    /**
+     * @Route("/personnage/{id}/addArme/{idarme}", name="app_arme_personnage_add", methods={"POST"})
+     */
+    public function addArme(Personnage $personnage,Arme $arme,ArmePersonnageRepository $armePersonnageRepository)
+    {
+        $armePersonnage  = new ArmePersonnage();
+        $armePersonnage->setArme($arme);
+        $armePersonnage->setPersonnage($personnage);
+        $armePersonnage->setQty(1);
+
+        $armePersonnageRepository->add($armePersonnage,true);
+
+        $response = new Response('ok', Response::HTTP_OK);
+        return $response;
+    }
+/**
+     * @Route("/personnage/deleteArme/{id}", name="app_arme_personnage_delete")
+     */
+    public function deleteArme(ArmePersonnage $armePersonnage, ArmePersonnageRepository $armePersonnageRepository){
+        $armePersonnageRepository->remove($armePersonnage,true);
+        $response = new Response('ok', Response::HTTP_OK);
+        return $response;
+    }
+    /**
+     * @Route("/personnage/updtArmeQty/{id}/{qty}", name="app_arme_personnage_update_qty")
+     */
+    public function updtQtyArme(ArmePersonnage $armePersonnage,int $qty, ArmePersonnageRepository $armePersonnageRepository)
+    {
+        $armePersonnage->setQty($qty);
+        $armePersonnageRepository->add($armePersonnage,true);
+        $response = new Response('', Response::HTTP_OK);
+        return $response;
+
+    }
+
     public function create_personnage(ManagerRegistry $doctrine,Personnage $personnage)
     {
         $entityManager = $doctrine->getManager();
