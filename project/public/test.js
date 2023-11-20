@@ -105,6 +105,7 @@ function changeValue(input,val){
 }
 
 
+
 $(".jds,.bba").change(function(){
   MajPerso();
 })

@@ -6,13 +6,19 @@ use App\Entity\Classe;
 use App\Entity\Competence;
 use App\Entity\Race;
 use App\Entity\Themes;
+use App\Entity\TypeArme;
+use App\Repository\ArmePersonnageRepository;
+use App\Repository\PersoCompetenceRepository;
+use App\Repository\PersonnageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use App\Entity\Personnage;
 use App\Entity\PersoCompetence;
@@ -175,13 +181,12 @@ class PersonnageController extends AbstractController
     /**
     * @Route("/deletePersonnage/{id}", name="app_delete_personnage")
     */
-    public function delete_personnage(Request $request, ManagerRegistry $doctrine,$id){
-        $personnage = $doctrine->getRepository(Personnage::class)->find($id);
-        return $this->render('personnage/delete.html.twig', [
-            
-            'personnage'=>$personnage,
-            
-        ]);
+    public function delete_personnage(Personnage $personnage,PersoCompetenceRepository $persoCompetenceRepository,PersonnageRepository $personnageRepository){
+       
+        $personnageRepository->delete($personnage,$persoCompetenceRepository);
+        
+        $response = new Response('ok', Response::HTTP_OK);
+        return $response;
 
     }
     public function create_personnage(ManagerRegistry $doctrine,Personnage $personnage)
