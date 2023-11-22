@@ -288,6 +288,11 @@ $(".rang").change(function(){
   
   MajPerso();
 });
+
+$(".mod_carac").change(function(){
+  MajPerso();
+})
+
 //navigation feuille perso
 $(".nav-tabs .nav-item .nav-link").click(function(){
   $(this).closest(".nav-item").siblings().find(".nav-link").removeClass("active");
