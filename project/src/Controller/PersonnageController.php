@@ -158,6 +158,8 @@ class PersonnageController extends AbstractController
         $competences = $doctrine->getRepository(Competence::class)->findAll();
         $typeArme = $doctrine->getRepository(TypeArme::class)->findAll();
         $ArmePersonnage = $doctrine->getRepository(ArmePersonnage::class)->findBy(['personnage' => $personnage]);
+        $TypeDegats = $doctrine->getRepository(Arme::class)->findTypeDmg();
+        
         
         $persoCompetences = array();
         if($id){
@@ -182,7 +184,8 @@ class PersonnageController extends AbstractController
             'competences'=>$competences,
             'persoCompetences'=>$persoCompetences,
             'typeArme' => $typeArme,
-            'ArmePersonnage' => $ArmePersonnage
+            'ArmePersonnage' => $ArmePersonnage,
+            'TypeDegats' => $TypeDegats
         ]);
     }
     /**

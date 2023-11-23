@@ -39,18 +39,45 @@ class ArmeRepository extends ServiceEntityRepository
         }
     }
 
-    public function findByTypeArme($typeArme): array
+    public function findByFiltreArme($type,$lvl,$TypeDmg): array
    {
-       return $this->createQueryBuilder('a')
-           ->andWhere('a.type = :val')
-           ->setParameter('val', $typeArme->getId())
-           ->orderBy('a.id', 'ASC')
-           
-           ->getQuery()
-            ->getResult()
-       ;
-    }
+       $q =  $this->createQueryBuilder('a');
+       if($type>0){
+        $q->andWhere('a.type = :type')
+        ->setParameter('type', $type);
+       }
+       if($lvl> 0){
+        $q->andWhere('a.niveau = :lvl')
+        ->setParameter('lvl', $lvl);
+       }
+       if($TypeDmg!="--"){
+        
 
+        $q->andWhere($q->expr()->orX(
+            $q->expr()->like('a.TypeDegat', ':var1'),
+            $q->expr()->like('a.TypeDegat', ':var2'),
+            $q->expr()->eq('a.TypeDegat',':var3')
+        ))
+        ->setParameter('var1', $TypeDmg.' &%')
+        ->setParameter('var2', '%& '.$TypeDmg)
+        ->setParameter('var3', $TypeDmg); 
+       }
+
+                    
+        $q->orderBy('a.id', 'ASC');
+        return $q->getQuery()->getResult();
+        
+    }
+    public function findTypeDmg():array
+    {
+        $q = $this->createQueryBuilder('a')->select("DISTINCT a.TypeDegat")->getQuery()->getResult();
+        $types = [];
+        foreach($q as $row)
+        {
+            if(!str_contains($row["TypeDegat"],"&"))$types[]= $row["TypeDegat"];
+        }
+        return $types;
+    }
 //    /**
 //     * @return Arme[] Returns an array of Arme objects
 //     */

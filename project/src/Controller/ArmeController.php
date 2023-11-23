@@ -6,6 +6,7 @@ use App\Entity\Arme;
 use App\Entity\TypeArme;
 use App\Form\ArmeType;
 use App\Repository\ArmeRepository;
+use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,6 +14,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\SerializerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+
 
 /**
  * @Route("/arme")
@@ -52,6 +55,7 @@ class ArmeController extends AbstractController
 
     /**
      * @Route("/{id}", name="app_arme_show", methods={"GET"})
+     * 
      */
     public function show(Arme $arme): Response
     {
@@ -92,13 +96,16 @@ class ArmeController extends AbstractController
         return $this->redirectToRoute('app_arme_index', [], Response::HTTP_SEE_OTHER);
     }
 
+  
+
     /**
-     * @route("/getArmeBytype/{id}", name="get_arme_by_type", methods={"GET"})
+     * @Route("/getArmeByFiltre/{type}/{lvl}/{TypeDmg}", name="app_arme_by_filtre", methods={"GET"})
      */
-    public function getArmeBytype(ArmeRepository $armeRepository, TypeArme $typeArme, SerializerInterface $serializer)
+    public function getArmeByFiltre(ArmeRepository $armeRepository,SerializerInterface $serializer,$type,$lvl,$TypeDmg)
     {
-        
-        $armes = $armeRepository->findByTypeArme($typeArme);
+       
+        $armes = $armeRepository->findByFiltreArme(intval($type),intval($lvl),$TypeDmg);
+
         $triArmes = [];
         
         foreach($armes as $arme){
@@ -109,4 +116,7 @@ class ArmeController extends AbstractController
        
         return new JsonResponse($data, 200, [], true);
     }
+
+
+
 }

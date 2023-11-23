@@ -53,8 +53,29 @@
       <div class="">
         <div class='FiltreTypeArme'>
            {% for type in typeArme %}
-                <span class='btn btn-primary filtretype' data-id='{{type.id}}'>{{ type.Titre}}</span>
+                <!--<span class='btn btn-primary filtretype' data-id='{{type.id}}'>{{ type.Titre}}</span>-->
            {% endfor %}
+
+           <select class='filtretype filtreArme'>
+           <option >--</option>
+            {% for type in typeArme %}
+                <option value='{{type.id}}'>{{ type.Titre}}</span>
+            {% endfor %}
+           </select>
+
+           <select class='filtreLvl filtreArme'>
+              <option>--</option>
+              {% for i in 1..20 %}
+                <option value='{{i}}'>{{i}}</option>
+              {% endfor %}
+           </select>
+
+           <select class='filtreTypeDmg filtreArme'>
+              <option>--</option>
+              {% for typeDmg in TypeDegats %}
+                <option >{{typeDmg}}</option>
+              {% endfor %}
+           </select>
         </div>
         <div id='contentArme' class='' data-personnage='{{personnage.id| default("")}}'>
           <div id='headArme' class='row'>

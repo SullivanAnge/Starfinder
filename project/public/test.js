@@ -137,6 +137,24 @@ function generateCategorie(categorie){
   return ligne;
 }
 
+function GenerateArmeFilter(data){
+  $("#bodyArme").html("");
+    for (const key in data) {
+      let categorie = data[key];
+      $("#bodyArme").append(generateMainArme(key));
+      for (const skey in categorie) {
+        let armes = categorie[skey];
+        $("#bodyArme").append(generateCategorie(skey));
+          var i = 0;
+          armes.forEach(arme => {  
+            $("#bodyArme").append(generateArme(arme,i));
+            i++;
+          });
+      }
+    }
+    
+  }
+
 
 
 $(".jds,.bba").change(function(){
@@ -341,29 +359,47 @@ $("#bonus_arm_cae,#bonus_arm_cac").change(function(){
   MajPerso();
 })
 //filtrage type arme
-$(".filtretype").click(function(){
-  var id = $(this).attr("data-id");
-  console.log(id);
+/*$(".filtretype").change(function(){
+  var id = $(this).val();
+  
   $.ajax({
     url: "/arme/getArmeBytype/"+id,
     
   }).done(function(data){
+    GenerateArmeFilter(data);
+  }).fail(function(data){
     $("#bodyArme").html("");
-    for (const key in data) {
-      let categorie = data[key];
-      $("#bodyArme").append(generateMainArme(key));
-      for (const skey in categorie) {
-        let armes = categorie[skey];
-        $("#bodyArme").append(generateCategorie(skey));
-          var i = 0;
-          armes.forEach(arme => {  
-            $("#bodyArme").append(generateArme(arme,i));
-            i++;
-          });
-      }
-    }  
   });
 })
+
+$(".filtreLvl").change(function(){
+  var lvl = parseInt($(this).val());
+  $.ajax({
+    url: "/arme/getArmeByLvl/"+lvl,
+    
+  }).done(function(data){
+    GenerateArmeFilter(data);
+  })
+})*/
+
+$(".filtreArme").change(function(){
+  
+  var type = $(".filtretype").val();
+  var lvl = $(".filtreLvl").val();
+  var TypeDmg = $(".filtreTypeDmg").val();
+
+  console.log("test"+TypeDmg);
+
+  var url = "/arme/getArmeByFiltre/"+type+"/"+lvl+"/"+TypeDmg;
+  
+
+  $.ajax({
+    url: url,
+
+  }).done(function(data){
+    GenerateArmeFilter(data);
+  })
+});
 
 var arme;
 var personnage;
