@@ -358,29 +358,8 @@ $(".nav-tabs .nav-item .nav-link").click(function(){
 $("#bonus_arm_cae,#bonus_arm_cac").change(function(){
   MajPerso();
 })
-//filtrage type arme
-/*$(".filtretype").change(function(){
-  var id = $(this).val();
-  
-  $.ajax({
-    url: "/arme/getArmeBytype/"+id,
-    
-  }).done(function(data){
-    GenerateArmeFilter(data);
-  }).fail(function(data){
-    $("#bodyArme").html("");
-  });
-})
+//filtrage arme
 
-$(".filtreLvl").change(function(){
-  var lvl = parseInt($(this).val());
-  $.ajax({
-    url: "/arme/getArmeByLvl/"+lvl,
-    
-  }).done(function(data){
-    GenerateArmeFilter(data);
-  })
-})*/
 
 $(".filtreArme").change(function(){
   
@@ -388,7 +367,7 @@ $(".filtreArme").change(function(){
   var lvl = $(".filtreLvl").val();
   var TypeDmg = $(".filtreTypeDmg").val();
 
-  console.log("test"+TypeDmg);
+  
 
   var url = "/arme/getArmeByFiltre/"+type+"/"+lvl+"/"+TypeDmg;
   
@@ -407,15 +386,30 @@ $("#bodyArme").on("click",".arme",function(){
   $(this).toggleClass("select");
   arme = $(this).attr('data-id');
   personnage = $("#contentArme").attr('data-personnage');
-  console.log(arme);
+  
   $.ajax({
     url: "/personnage/"+personnage+"/addArme/"+arme,
     method: "POST",
     
+  }).done(function(data){
+    console.log(data);
+    var row = "<div class='row'>";
+    row+="<div class='col-md-2' >"+data.arme.Titre+"</div>";
+    
+    row+="<div class='col-md-1 text-center'>"+data.arme.degats+" "+data.arme.TypeDegat+"</div>";
+    row+="<div class='col-md-1 text-center'>"+(data.arme.portee ? data.arme.portee+"m" : "")+"</div>";
+    row+="<div class='col-md-1 text-center'>"+data.arme.critque+"</div>";
+    row+="<div class='col-md-2'>"+data.arme.special+"</div>";
+    row+="<div class='col-md-1 text-center'>"+(data.arme.capacite ? data.arme.capacite : "")+"</div>";
+    row+="<div class='col-md-1 text-center'>"+(data.arme.consomation ? data.arme.consomation : "")+"</div>";
+    row+="<div class='col-md-1 text-center'>"+(data.arme.volume ? data.arme.volume : "")+"</div>";
+    row+='<div class="col-md-1 text-center"><input type="number" class="change_qty" data-id="'+data.ArmePersonnage.id+'" value="'+data.ArmePersonnage.qty+'" /></div>';
+    row+='<div class="col-md-1 text-center"><span class="deleteArme" data-id="'+data.ArmePersonnage.id+'"><i class="fa-regular fa-circle-xmark"></i></span></div>';
+    $(".bodyEquipArme").append(row);
   })
 });
 var element;
-$(".deleteArme").click(function(){
+$("#equipeArme").on("click",".deleteArme",function(){
   var armePersonnage = $(this).attr('data-id');
   element = $(this).closest(".row");
   $.ajax({

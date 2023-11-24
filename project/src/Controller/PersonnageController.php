@@ -201,19 +201,26 @@ class PersonnageController extends AbstractController
     }
 
     /**
-     * @Route("/personnage/{id}/addArme/{idarme}", name="app_arme_personnage_add", methods={"POST"})
+     * @Route("/personnage/{id}/addArme/{arme}", name="app_arme_personnage_add", methods={"POST"})
      */
-    public function addArme(Personnage $personnage,Arme $arme,ArmePersonnageRepository $armePersonnageRepository)
+    public function addArme(Personnage $personnage,Arme $arme,ArmePersonnageRepository $armePersonnageRepository,SerializerInterface $serializer)
     {
+        
         $armePersonnage  = new ArmePersonnage();
         $armePersonnage->setArme($arme);
         $armePersonnage->setPersonnage($personnage);
         $armePersonnage->setQty(1);
 
         $armePersonnageRepository->add($armePersonnage,true);
+        $tabArme = [];
+        $tabArme["arme"]=$arme;
+        $tabArme["ArmePersonnage"]["id"]=$armePersonnage->getId();
+        $tabArme["ArmePersonnage"]["qty"]=$armePersonnage->getQty();
 
-        $response = new Response('ok', Response::HTTP_OK);
-        return $response;
+        
+        $data = $serializer->serialize($tabArme, 'json', ['groups' => ['armes']]);
+        return new JsonResponse($data, 200, [], true);
+        
     }
 /**
      * @Route("/personnage/deleteArme/{id}", name="app_arme_personnage_delete")
