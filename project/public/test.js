@@ -420,7 +420,7 @@ $("#equipeArme").on("click",".deleteArme",function(){
   })
 });
 
-$(".change_qty").change(function(){
+$("#equipeArme").on("change",".change_qty",function(){
   var armePersonnage = $(this).attr('data-id');
   var value = $(this).val();
   $.ajax({
