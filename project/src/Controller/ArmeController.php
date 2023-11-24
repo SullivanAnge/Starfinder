@@ -99,12 +99,12 @@ class ArmeController extends AbstractController
   
 
     /**
-     * @Route("/getArmeByFiltre/{type}/{lvl}/{TypeDmg}", name="app_arme_by_filtre", methods={"GET"})
+     * @Route("/getArmeByFiltre/{type}/{lvl}/{TypeDmg}/{nom}", name="app_arme_by_filtre", methods={"GET"})
      */
-    public function getArmeByFiltre(ArmeRepository $armeRepository,SerializerInterface $serializer,$type,$lvl,$TypeDmg)
+    public function getArmeByFiltre(ArmeRepository $armeRepository,SerializerInterface $serializer,$type,$lvl,$TypeDmg,$nom)
     {
        
-        $armes = $armeRepository->findByFiltreArme(intval($type),intval($lvl),$TypeDmg);
+        $armes = $armeRepository->findByFiltreArme(intval($type),intval($lvl),$TypeDmg,$nom);
 
         $triArmes = [];
         

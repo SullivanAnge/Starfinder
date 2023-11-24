@@ -359,17 +359,17 @@ $("#bonus_arm_cae,#bonus_arm_cac").change(function(){
   MajPerso();
 })
 //filtrage arme
-
-
 $(".filtreArme").change(function(){
-  
+  console.log("oik");
   var type = $(".filtretype").val();
   var lvl = $(".filtreLvl").val();
   var TypeDmg = $(".filtreTypeDmg").val();
+  var nom = $("#searchArme").val().trim();
+  if(nom.length==0)nom=null;
 
   
 
-  var url = "/arme/getArmeByFiltre/"+type+"/"+lvl+"/"+TypeDmg;
+  var url = "/arme/getArmeByFiltre/"+type+"/"+lvl+"/"+TypeDmg+"/"+nom;
   
 
   $.ajax({
@@ -379,6 +379,22 @@ $(".filtreArme").change(function(){
     GenerateArmeFilter(data);
   })
 });
+
+var timeoutId;
+$("#searchArme").on("keyup", function() {
+  clearTimeout(timeoutId);
+
+  timeoutId = setTimeout(function() {
+
+    var search = $("#searchArme").val();
+    if(search.length>=3){
+        
+        $(".filtreArme").trigger("change");
+      
+      
+    }
+  },2000);
+})
 
 var arme;
 var personnage;

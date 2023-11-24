@@ -39,7 +39,7 @@ class ArmeRepository extends ServiceEntityRepository
         }
     }
 
-    public function findByFiltreArme($type,$lvl,$TypeDmg): array
+    public function findByFiltreArme($type,$lvl,$TypeDmg,$nom): array
    {
        $q =  $this->createQueryBuilder('a');
        if($type>0){
@@ -61,6 +61,9 @@ class ArmeRepository extends ServiceEntityRepository
         ->setParameter('var1', $TypeDmg.' &%')
         ->setParameter('var2', '%& '.$TypeDmg)
         ->setParameter('var3', $TypeDmg); 
+       }
+       if(strlen($nom)>0 && $nom!='null'){
+        $q->andWhere("a.Titre like :nom")->setParameter('nom', "%".$nom."%");
        }
 
                     
