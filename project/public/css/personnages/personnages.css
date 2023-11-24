@@ -17,7 +17,7 @@ td.mini_md{width:65px}
 .chooseTheme.active,.chooseRace.active,.chooseClasse.active{background:#5accf5;color:#fff}
 .chooseRace .card-title{}
 
-#contentArme{padding:5px 10px;}
+#contentArme{padding:5px 10px;border-top: solid 1px #fff;}
 #contentArme .row{padding: 8px 0;margin:0;font-size: 12px;}
 #contentArme .row.lignecat{font-weight: bold;background:#53347a;font-weight: 14px;border-bottom: solid 2px #fff;}
 #bodyArme .arme:hover,#bodyArme .arme.impair:hover,#bodyArme .arme.select,#bodyArme .arme.impair.select{cursor: pointer;background:#5accf5;color:#000}
@@ -30,6 +30,8 @@ td.mini_md{width:65px}
 #equipeArme .row{border-bottom: solid 1px #fff;    padding: 10px 0;}
 #headEquipeArme{font-weight: bold;}
 #equipeArme .row .deleteArme:hover{cursor:pointer;color:red}
+.FiltreTypeArme{padding-bottom:20px}
+.FiltreTypeArme label{font-size: 12px;}
 
 
 .lds-roller {
